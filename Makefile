@@ -1,5 +1,4 @@
-# please change 'hostname' to your hostname
-deploy:
+build:
 	nix build .#darwinConfigurations.macbook.system \
 	   --extra-experimental-features 'nix-command flakes'
 

@@ -22,6 +22,17 @@
   inputs = {
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
+
+    # home-manager, used for managing user configuration
+    home-manager = {
+      # url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager";
+      # The `follows` keyword in inputs is used for inheritance.
+      # Here, `inputs.nixpkgs` of home-manager is kept consistent with the `inputs.nixpkgs` of the current flake,
+      # to avoid problems caused by different versions of nixpkgs dependencies.
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
+    };
+
     darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
@@ -37,16 +48,18 @@
     self,
     nixpkgs,
     darwin,
+    home-manager,
     ...
   }: let
     username = "jp";
+    useremail = "jeanpaul.roisin@protonmail.com";
     system = "aarch64-darwin";
     hostname = "macbook";
 
     specialArgs =
       inputs
       // {
-        inherit username hostname;
+        inherit username useremail hostname;
       };
   in {
     darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
@@ -55,8 +68,16 @@
         ./modules/nix-core.nix
         ./modules/system.nix
         ./modules/apps.nix
-
         ./modules/host-users.nix
+
+	# home manager
+        home-manager.darwinModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = specialArgs;
+          home-manager.users.${username} = import ./home/default.nix { inherit username; };
+	  # home-manager.users.${username} = import ./home/default.nix { inherit username useremail; };
+        }
       ];
     };
     # nix code formatter

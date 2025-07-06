@@ -19,6 +19,7 @@
     git
     neovim
     helix
+    lazygit
   ];
 
   # The apps installed by homebrew are not managed by nix, and not reproducible!
@@ -28,8 +29,7 @@
 
     onActivation = {
       autoUpdate = false;
-      # 'zap': uninstalls all formulae(and related files) not listed here.
-      # cleanup = "zap";
+      # cleanup = "zap"; # 'zap': uninstalls all formulae(and related files) not listed here.
     };
 
     # taps = [
