@@ -1,5 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    oh-my-zsh
+
     # archives
     zip
     xz
@@ -36,7 +38,7 @@
     alacritty = {
       enable = true;
       settings = {
-        general.import = ["~/.config/alacritty/themes/one_dark.toml"];
+        general.import = ["~/.config/alacritty/themes/ayu_mirage.toml"];
         window = {
           dimensions = { columns = 80; lines = 24; };
           padding = { x = 12; y = 12; };

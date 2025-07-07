@@ -38,6 +38,7 @@
 
     # `brew install`
     brews = [
+      "autojump"
       # "aria2"  # download tool
     ];
 

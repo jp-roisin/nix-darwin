@@ -5,7 +5,24 @@
     initExtra = ''
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
     '';
-  };
+
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "git"
+        "autojump" # brew
+        "yarn"
+        "brew"
+
+        # Manual install: /nix/store/7k1wqk4f0zr2kjsd60xpbs0x01k1wky3-oh-my-zsh-2025-06-19/share/oh-my-zsh/custom/plugins
+        "alias-tips"
+        "zsh-autosuggestions"
+        "zsh-syntax-highlighting"
+      ];
+      # theme = "gozilla";
+      theme = "agnoster";
+     };
+   };
 
   home.shellAliases = {
     k = "kubectl";
