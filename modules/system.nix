@@ -20,8 +20,8 @@
         autohide = true;
         show-recents = false; # disable recent apps
         tilesize = 128;
-        autohide-delay = 0.1;
-        expose-animation-duration = 0.1;
+        autohide-delay = 0.0;
+        expose-animation-duration = 0.0;
         orientation = "right";
         persistent-apps = [
           { app = "/Applications/Firefox.app"; }

@@ -21,6 +21,7 @@
     neovim
     helix
     lazygit
+    sqlite
   ];
 
   # The apps installed by homebrew are not managed by nix, and not reproducible!
@@ -51,6 +52,9 @@
       "alacritty"
       "alfred"
       "spotify"
+      "logseq"
+      "bruno"
+      "insomnia"
 
       # Add someday
       # "google-chrome"
