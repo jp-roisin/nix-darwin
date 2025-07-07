@@ -54,7 +54,6 @@
       "spotify"
       "logseq"
       "bruno"
-      "insomnia"
 
       # Add someday
       # "google-chrome"
