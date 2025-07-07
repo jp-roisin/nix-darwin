@@ -21,6 +21,8 @@
 
     defaults = {
       menuExtraClock.Show24Hour = true;  # show 24 hour clock
+
+      universalaccess.reduceMotion = true; # workspace animation
       
       # customize dock
       dock = {
@@ -58,6 +60,7 @@
       # Incomplete list of macOS `defaults` commands :
       #   https://github.com/yannbertrand/macos-defaults
       NSGlobalDomain = {
+        _HIHideMenuBar = true;
         # `defaults read NSGlobalDomain "xxx"`
         "com.apple.swipescrolldirection" = false;  # enable natural scrolling(default to true)
         "com.apple.sound.beep.feedback" = 0;  # disable beep sound when pressing volume up/down key
