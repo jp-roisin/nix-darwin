@@ -3,8 +3,9 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    initExtra = ''
+    initContent = ''
       export PATH="$PATH:/usr/local/go/bin:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
+      [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
     '';
 
     oh-my-zsh = {
