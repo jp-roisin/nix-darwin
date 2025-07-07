@@ -41,7 +41,7 @@
     alacritty = {
       enable = true;
       settings = {
-        general.import = [ "~/.config/alacritty/themes/ayu_mirage.toml" ];
+        general.import = [ "~/.config/alacritty/themes/custom_ayu_mirage.toml" ];
         window = {
           dimensions = {
             columns = 80;
