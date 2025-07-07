@@ -29,7 +29,7 @@
 
     onActivation = {
       autoUpdate = false;
-      # cleanup = "zap"; # 'zap': uninstalls all formulae(and related files) not listed here.
+      cleanup = "zap"; # 'zap': uninstalls all formulae(and related files) not listed here.
     };
 
     # taps = [
@@ -43,9 +43,14 @@
 
     # `brew install --cask`
     casks = [
-     # "firefox"
+     "firefox"
+     "amethyst"
      "alacritty"
-      # "google-chrome"
+     "alfred"
+
+     # Add someday
+     # "google-chrome"
+     # "visual-studio-code"
     ];
   };
 }

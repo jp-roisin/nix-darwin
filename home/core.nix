@@ -33,6 +33,56 @@
   ];
 
   programs = {
+    alacritty = {
+      enable = true;
+      settings = {
+        general.import = ["~/.config/alacritty/themes/one_dark.toml"];
+        window = {
+          dimensions = { columns = 80; lines = 24; };
+          padding = { x = 12; y = 12; };
+          dynamic_padding = false;
+          decorations = "None";
+          startup_mode = "Windowed";
+          title = "Alacritty";
+          class = {
+            instance = "Alacritty";
+            general = "Alacritty";
+          };
+        };
+
+        env = {
+          TERM = "xterm-256color";
+        };
+
+        font = {
+          normal = { family = "JetBrainsMono Nerd Font"; style = "Regular"; };
+          bold = { family = "JetBrainsMono Nerd Font"; style = "Bold"; };
+          italic = { family = "JetBrainsMono Nerd Font"; style = "Italic"; };
+          bold_italic = { family = "JetBrainsMono Nerd Font"; style = "Bold Italic"; };
+          size = 16.0;
+        };
+
+        cursor = { style = "Block"; };
+
+        bell = { animation = "Ease"; };
+
+        scrolling = {
+          history = 10000;
+          multiplier = 3;
+        };
+
+        keyboard.bindings = [
+          { key = "V"; mods = "Control|Shift"; action = "Paste"; }
+          { key = "C"; mods = "Control|Shift"; action = "Copy"; }
+          { key = "Plus"; mods = "Control"; action = "IncreaseFontSize"; }
+          { key = "Minus"; mods = "Control"; action = "DecreaseFontSize"; }
+          { key = "Equals"; mods = "Control"; action = "ResetFontSize"; }
+          { key = "F"; mods = "Control"; action = "SearchForward"; }
+          { key = "B"; mods = "Control"; action = "SearchBackward"; }
+        ];
+      };
+    };
+
     # modern vim
     neovim = {
       enable = true;
@@ -45,7 +95,7 @@
     eza = {
       enable = true;
       git = true;
-      icons = true;
+      icons = "auto";
       enableZshIntegration = true;
     };
 
