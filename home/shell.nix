@@ -7,6 +7,7 @@
       export DEFAULT_USER="jp"
       export PATH="$PATH:/usr/local/go/bin:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
       [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+      eval "$(mise activate zsh)"
     '';
 
     oh-my-zsh = {

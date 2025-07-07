@@ -42,6 +42,7 @@
     brews = [
       "autojump"
       "rustup" # Install rust using `rustup-init`
+      "mise"
       # "aria2"  # download tool
     ];
 
