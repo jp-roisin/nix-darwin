@@ -4,6 +4,7 @@
     enable = true;
     enableCompletion = true;
     initContent = ''
+      export DEFAULT_USER="jp"
       export PATH="$PATH:/usr/local/go/bin:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
       [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
     '';
