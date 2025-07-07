@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -21,8 +22,8 @@
       ];
       # theme = "gozilla";
       theme = "agnoster";
-     };
-   };
+    };
+  };
 
   home.shellAliases = {
     k = "kubectl";

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     oh-my-zsh
 
@@ -19,10 +20,12 @@
     nmap # A utility for network discovery and security auditing
 
     # misc
-    cowsay
-    file
     which
     tree
+    fastfetch
+
+    # Explore
+    file
     gnused
     gnutar
     gawk
@@ -38,10 +41,16 @@
     alacritty = {
       enable = true;
       settings = {
-        general.import = ["~/.config/alacritty/themes/ayu_mirage.toml"];
+        general.import = [ "~/.config/alacritty/themes/ayu_mirage.toml" ];
         window = {
-          dimensions = { columns = 80; lines = 24; };
-          padding = { x = 12; y = 12; };
+          dimensions = {
+            columns = 80;
+            lines = 24;
+          };
+          padding = {
+            x = 12;
+            y = 12;
+          };
           dynamic_padding = false;
           decorations = "None";
           startup_mode = "Windowed";
@@ -57,16 +66,32 @@
         };
 
         font = {
-          normal = { family = "JetBrainsMono Nerd Font"; style = "Regular"; };
-          bold = { family = "JetBrainsMono Nerd Font"; style = "Bold"; };
-          italic = { family = "JetBrainsMono Nerd Font"; style = "Italic"; };
-          bold_italic = { family = "JetBrainsMono Nerd Font"; style = "Bold Italic"; };
+          normal = {
+            family = "JetBrainsMono Nerd Font";
+            style = "Regular";
+          };
+          bold = {
+            family = "JetBrainsMono Nerd Font";
+            style = "Bold";
+          };
+          italic = {
+            family = "JetBrainsMono Nerd Font";
+            style = "Italic";
+          };
+          bold_italic = {
+            family = "JetBrainsMono Nerd Font";
+            style = "Bold Italic";
+          };
           size = 16.0;
         };
 
-        cursor = { style = "Block"; };
+        cursor = {
+          style = "Block";
+        };
 
-        bell = { animation = "Ease"; };
+        bell = {
+          animation = "Ease";
+        };
 
         scrolling = {
           history = 10000;
@@ -74,13 +99,41 @@
         };
 
         keyboard.bindings = [
-          { key = "V"; mods = "Control|Shift"; action = "Paste"; }
-          { key = "C"; mods = "Control|Shift"; action = "Copy"; }
-          { key = "Plus"; mods = "Control"; action = "IncreaseFontSize"; }
-          { key = "Minus"; mods = "Control"; action = "DecreaseFontSize"; }
-          { key = "Equals"; mods = "Control"; action = "ResetFontSize"; }
-          { key = "F"; mods = "Control"; action = "SearchForward"; }
-          { key = "B"; mods = "Control"; action = "SearchBackward"; }
+          {
+            key = "V";
+            mods = "Control|Shift";
+            action = "Paste";
+          }
+          {
+            key = "C";
+            mods = "Control|Shift";
+            action = "Copy";
+          }
+          {
+            key = "Plus";
+            mods = "Control";
+            action = "IncreaseFontSize";
+          }
+          {
+            key = "Minus";
+            mods = "Control";
+            action = "DecreaseFontSize";
+          }
+          {
+            key = "Equals";
+            mods = "Control";
+            action = "ResetFontSize";
+          }
+          {
+            key = "F";
+            mods = "Control";
+            action = "SearchForward";
+          }
+          {
+            key = "B";
+            mods = "Control";
+            action = "SearchBackward";
+          }
         ];
       };
     };

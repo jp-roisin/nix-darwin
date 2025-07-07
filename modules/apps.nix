@@ -1,4 +1,5 @@
-{ pkgs, ...}: {
+{ pkgs, ... }:
+{
 
   ##########################################################################
   #
@@ -44,14 +45,15 @@
 
     # `brew install --cask`
     casks = [
-     "firefox"
-     "amethyst"
-     "alacritty"
-     "alfred"
+      "firefox"
+      "amethyst"
+      "alacritty"
+      "alfred"
+      "spotify"
 
-     # Add someday
-     # "google-chrome"
-     # "visual-studio-code"
+      # Add someday
+      # "google-chrome"
+      # "visual-studio-code"
     ];
   };
 }
