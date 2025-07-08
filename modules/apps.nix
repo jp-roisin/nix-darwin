@@ -55,6 +55,8 @@
       "spotify"
       "logseq"
       "bruno"
+      "signal"
+      "jellyfin"
 
       # Add someday
       # "google-chrome"
