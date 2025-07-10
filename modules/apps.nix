@@ -43,7 +43,6 @@
       "autojump"
       "rustup" # Install rust using `rustup-init`
       "mise"
-      # "aria2"  # download tool
     ];
 
     # `brew install --cask`
@@ -57,9 +56,13 @@
       "bruno"
       "signal"
       "jellyfin"
+      "stats"
+
+      # `brew install --no-quarantine --cask`
+      # Requiring: scripts/brew_no_quarantine.sh
+      "chromium"
 
       # Add someday
-      # "google-chrome"
       # "visual-studio-code"
     ];
   };
