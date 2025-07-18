@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     oh-my-zsh
     tmux
+    zellij
 
     # archives
     zip

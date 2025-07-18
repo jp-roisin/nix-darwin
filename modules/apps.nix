@@ -48,7 +48,6 @@
     # `brew install --cask`
     casks = [
       "firefox"
-      "amethyst"
       "alacritty"
       "alfred"
       "spotify"
@@ -57,6 +56,8 @@
       "signal"
       "jellyfin"
       "stats"
+      "nikitabobko/tap/aerospace"
+      "gimp"
 
       # `brew install --no-quarantine --cask`
       # Requiring: scripts/brew_no_quarantine.sh
