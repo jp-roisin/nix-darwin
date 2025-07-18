@@ -43,6 +43,7 @@
       "autojump"
       "rustup" # Install rust using `rustup-init`
       "mise"
+      "lua-language-server"
     ];
 
     # `brew install --cask`
