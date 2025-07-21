@@ -59,6 +59,7 @@
       "stats"
       "nikitabobko/tap/aerospace"
       "gimp"
+      "zen"
 
       # `brew install --no-quarantine --cask`
       # Requiring: scripts/brew_no_quarantine.sh
