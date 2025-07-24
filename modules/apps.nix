@@ -44,6 +44,7 @@
       "rustup" # Install rust using `rustup-init`
       "mise"
       "lua-language-server"
+      "git-filter-repo"
     ];
 
     # `brew install --cask`
