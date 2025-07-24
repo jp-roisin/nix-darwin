@@ -16,7 +16,7 @@
     lfs.enable = true;
 
     userName = "jp-roisin";
-    userEmail = "jeanpaul.roisin@ptrotonmail.com";
+    userEmail = "jeanpaul.roisin@protonmail.com";
 
     includes = [
       {
