@@ -45,6 +45,12 @@
       "mise"
       "lua-language-server"
       "git-filter-repo"
+      "felixkratz/formulae/borders"
+      "transmission-cli"
+    ];
+
+    taps = [
+      "FelixKratz/formulae"
     ];
 
     # `brew install --cask`
@@ -61,6 +67,10 @@
       "nikitabobko/tap/aerospace"
       "gimp"
       "zen"
+      "tailscale-app"
+      "jellyfin-media-player"
+      "discord"
+      "vlc"
 
       # `brew install --no-quarantine --cask`
       # Requiring: scripts/brew_no_quarantine.sh
