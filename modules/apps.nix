@@ -34,9 +34,10 @@
       cleanup = "zap"; # 'zap': uninstalls all formulae(and related files) not listed here.
     };
 
-    # taps = [
-    #   "homebrew/services"
-    # ];
+    # `brew tap`
+    taps = [
+      "FelixKratz/formulae"
+    ];
 
     # `brew install`
     brews = [
@@ -47,10 +48,6 @@
       "git-filter-repo"
       "felixkratz/formulae/borders"
       "transmission-cli"
-    ];
-
-    taps = [
-      "FelixKratz/formulae"
     ];
 
     # `brew install --cask`
@@ -71,13 +68,10 @@
       "jellyfin-media-player"
       "discord"
       "vlc"
+      "anki"
 
-      # `brew install --no-quarantine --cask`
       # Requiring: scripts/brew_no_quarantine.sh
       "chromium"
-
-      # Add someday
-      # "visual-studio-code"
     ];
   };
 }
