@@ -49,6 +49,8 @@
       "felixkratz/formulae/borders"
       "transmission-cli"
       "texlab"
+      "yt-dlp"
+      "ffmpeg"
     ];
 
     # `brew install --cask`
