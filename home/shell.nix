@@ -8,6 +8,8 @@
       export PATH="$PATH:/usr/local/go/bin:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
       [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
       eval "$(mise activate zsh)"
+      export PATH="/usr/local/texlive/2025/bin/universal-darwin:$PATH"
+      export PATH="/Library/TeX/texbin:$PATH"
     '';
 
     oh-my-zsh = {

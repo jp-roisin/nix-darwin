@@ -48,6 +48,7 @@
       "git-filter-repo"
       "felixkratz/formulae/borders"
       "transmission-cli"
+      "texlab"
     ];
 
     # `brew install --cask`
@@ -69,6 +70,7 @@
       "discord"
       "vlc"
       "anki"
+      "mactex"
 
       # Requiring: scripts/brew_no_quarantine.sh
       "chromium"
