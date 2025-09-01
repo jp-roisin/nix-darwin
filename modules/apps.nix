@@ -51,6 +51,7 @@
       "texlab"
       "yt-dlp"
       "ffmpeg"
+      "youplot"
     ];
 
     # `brew install --cask`
@@ -73,6 +74,7 @@
       "vlc"
       "anki"
       "mactex"
+      "whatsapp"
 
       # Requiring: scripts/brew_no_quarantine.sh
       "chromium"
