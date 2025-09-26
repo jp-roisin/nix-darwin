@@ -52,6 +52,7 @@
       "yt-dlp"
       "ffmpeg"
       "youplot"
+      "pandoc"
     ];
 
     # `brew install --cask`
@@ -75,6 +76,7 @@
       "anki"
       "mactex"
       "whatsapp"
+      "docker-desktop"
 
       # Requiring: scripts/brew_no_quarantine.sh
       "chromium"
