@@ -28,7 +28,6 @@
         persistent-apps = [
           { app = "/Applications/Firefox.app"; }
           { app = "/Applications/Alacritty.app"; }
-          { app = "/Applications/Logseq.app"; }
         ];
       };
 
