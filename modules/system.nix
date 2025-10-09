@@ -15,6 +15,8 @@
 
       universalaccess.reduceMotion = true; # workspace animation
 
+      hitoolbox.AppleFnUsageType = null;
+
       # customize dock
       dock = {
         autohide = true;
