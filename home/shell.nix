@@ -21,7 +21,10 @@
         "brew"
         "tmux"
 
-        # Manual install: /nix/store/7k1wqk4f0zr2kjsd60xpbs0x01k1wky3-oh-my-zsh-2025-06-19/share/oh-my-zsh/custom/plugins
+        # --- Manual install ---
+        # move plugins from:
+        # /nix/store/0yx9ynxcwik7kkgnvypblpzpqsxs50dl-oh-my-zsh-2025-09-27/share/oh-my-zsh/custom/plugins
+        # to the new hash after running `nix flask update`
         "alias-tips"
         "zsh-autosuggestions"
         "zsh-syntax-highlighting"
