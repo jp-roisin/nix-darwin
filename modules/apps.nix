@@ -77,6 +77,7 @@
       "mactex"
       "whatsapp"
       "docker-desktop"
+      "microsoft-teams"
 
       # Requiring: scripts/brew_no_quarantine.sh
       "chromium"
