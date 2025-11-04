@@ -25,6 +25,7 @@
     which
     tree
     fastfetch
+    bat
 
     # Explore
     file
