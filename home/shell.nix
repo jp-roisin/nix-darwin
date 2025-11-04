@@ -6,6 +6,7 @@
     initContent = ''
       export DEFAULT_USER="jp"
       export PATH="$PATH:/usr/local/go/bin:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
+      export PATH="$HOME/.local/share/mise/installs/node/22.17.0/bin:$PATH"
       [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
       eval "$(mise activate zsh)"
       export PATH="/usr/local/texlive/2025/bin/universal-darwin:$PATH"
