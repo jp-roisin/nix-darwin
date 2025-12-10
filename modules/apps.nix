@@ -54,6 +54,11 @@
       "youplot"
       "pandoc"
       "vue-language-server"
+      "libpq"
+      "htop"
+      "mas"
+      "watchman"
+      "postgresql@17"
     ];
 
     # `brew install --cask`
@@ -85,5 +90,10 @@
       # Requiring: scripts/brew_no_quarantine.sh
       "chromium"
     ];
+
+    # `mas install`
+    masApps = {
+      Xcode = 497799835;
+    };
   };
 }
