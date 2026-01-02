@@ -64,6 +64,7 @@
     # `brew install --cask`
     casks = [
       "firefox"
+      "waterfox"
       "alacritty"
       "alfred"
       "spotify"
