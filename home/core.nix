@@ -190,7 +190,7 @@
 
         set -g status-right "#[fg=white] %a %d %b │ \uf017 %H:%M "
 
-        set -g window-list "#[fg=white] #S "
+        # set -g window-list "#[fg=white] #S "
 
         set -g status-bg "default"
         set -g status-interval 1
@@ -199,8 +199,9 @@
         set -g mouse on
 
         # Pane border styling
-        set-window-option -g pane-border-status top
-        set-window-option -g pane-border-format
+        set -g pane-border-status top
+        set -g pane-border-format ""
+
         set-window-option -g pane-active-border-style fg=white
       '';
     };
