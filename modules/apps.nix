@@ -87,6 +87,7 @@
       "microsoft-teams"
       "inkscape"
       "visual-studio-code"
+      "webstorm"
       "raspberry-pi-imager"
 
       # Requiring: scripts/brew_no_quarantine.sh
