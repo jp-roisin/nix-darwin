@@ -12,6 +12,7 @@
       export PATH="/usr/local/texlive/2025/bin/universal-darwin:$PATH"
       export PATH="/Library/TeX/texbin:$PATH"
       export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH:$PATH"
+      export PATH="$HOME/bin:$PATH"
     '';
 
     oh-my-zsh = {
