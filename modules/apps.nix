@@ -73,7 +73,6 @@
       "logseq"
       "bruno"
       "signal"
-      "jellyfin"
       "stats"
       "nikitabobko/tap/aerospace"
       "gimp"
