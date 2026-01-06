@@ -192,6 +192,18 @@
         StandardErrorPath = "/tmp/docker-desktop.err.log";
       };
     };
+
+    # Alacritty theme auto-switcher - monitors macOS appearance changes
+    alacritty-theme-monitor = {
+      serviceConfig = {
+        ProgramArguments = [
+          "/bin/bash"
+          "/etc/nix-darwin/scripts/alacritty_theme_monitor.sh"
+        ];
+        RunAtLoad = true;
+        KeepAlive = true;
+      };
+    };
   };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
