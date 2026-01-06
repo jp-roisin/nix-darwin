@@ -156,6 +156,10 @@
       ];
 
       extraConfig = ''
+        # Reduce escape-time to allow Escape key to work immediately
+        # Default is 500ms which causes delays when pressing Escape
+        set -sg escape-time 10
+
         # Set prefix to Ctrl-Space
         unbind C-b
         bind C-Space send-prefix
