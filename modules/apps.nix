@@ -38,6 +38,7 @@
     # `brew tap`
     taps = [
       "FelixKratz/formulae"
+      "nikitabobko/tap"
     ];
 
     # `brew install`
