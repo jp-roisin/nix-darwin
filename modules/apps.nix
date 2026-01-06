@@ -59,6 +59,8 @@
       "mas"
       "watchman"
       "postgresql@17"
+      "opencode"
+      "redis"
     ];
 
     # `brew install --cask`
