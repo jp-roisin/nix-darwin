@@ -156,8 +156,14 @@
     };
   };
 
-  # Add ability to used TouchID for sudo authentication
-  security.pam.services.sudo_local.touchIdAuth = true;
+  # Add ability to use TouchID for sudo authentication (including tmux sessions)
+  # Note: Using environment.etc to create sudo_local instead of security.pam.services
+  # This approach provides TouchID support in both regular terminal and tmux sessions
+  environment.etc."pam.d/sudo_local".text = ''
+    # Managed by Nix Darwin
+    auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so ignore_ssh
+    auth       sufficient     pam_tid.so
+  '';
 
   # Auto-start applications on login
   launchd.user.agents = {
