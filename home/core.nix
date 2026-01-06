@@ -176,7 +176,7 @@
         bind -n M-Down select-pane -D
 
         # Reload tmux configuration
-        bind r source-file ~/.config/tmux/tmux.conf \\; display-message "Config reloaded!"
+        bind r source-file ~/.config/tmux/tmux.conf
 
         # Start indexing at 1
         set -g base-index 1
