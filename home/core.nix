@@ -150,6 +150,11 @@
       terminal = "$TERM";
       shell = "/bin/zsh";
 
+      plugins = with pkgs.tmuxPlugins; [
+        resurrect
+        continuum
+      ];
+
       extraConfig = ''
         # Set prefix to Ctrl-Space
         unbind C-b
@@ -171,7 +176,7 @@
         bind -n M-Down select-pane -D
 
         # Reload tmux configuration
-        bind r source-file ~/.tmux.conf \\; display-message "Config reloaded!"
+        bind r source-file ~/.config/tmux/tmux.conf \\; display-message "Config reloaded!"
 
         # Start indexing at 1
         set -g base-index 1
@@ -203,6 +208,14 @@
         set -g pane-border-format ""
 
         set-window-option -g pane-active-border-style fg=white
+
+        # tmux-resurrect
+        # Save session: prefix + Ctrl-s (Ctrl-Space + Ctrl-s)
+        # Restore session: prefix + Ctrl-r (Ctrl-Space + Ctrl-r)
+
+        # tmux-continuum
+        set -g @continuum-restore 'on'
+        set -g @continuum-save-interval '15'
       '';
     };
 
