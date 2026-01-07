@@ -63,6 +63,7 @@
       "postgresql@17"
       "opencode"
       "redis"
+      "luacheck"
     ];
 
     # `brew install --cask`
