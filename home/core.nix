@@ -186,72 +186,7 @@
         continuum
       ];
 
-      extraConfig = ''
-        # Reduce escape-time to allow Escape key to work immediately
-        # Default is 500ms which causes delays when pressing Escape
-        set -sg escape-time 10
-
-        # Set prefix to Ctrl-Space
-        unbind C-b
-        bind C-Space send-prefix
-
-        # Color for Alacritty
-        set -ag terminal-overrides ",$TERM:Tc"
-
-        # Split panes using v and h
-        bind v split-window -h
-        bind h split-window -v
-        unbind '"'
-        unbind %
-
-        # Switch panes using Alt-arrow without prefix
-        bind -n M-Left select-pane -L
-        bind -n M-Right select-pane -R
-        bind -n M-Up select-pane -U
-        bind -n M-Down select-pane -D
-
-        # Reload tmux configuration
-        bind r source-file ~/.config/tmux/tmux.conf
-
-        # Start indexing at 1
-        set -g base-index 1
-        setw -g pane-base-index 1
-
-        # Status bar at the top
-        set -g status-position top
-        set -g status-justify "left"
-        set -g status-style "bg=default,fg=white"
-
-        set -g status-left ""
-        set -g window-status-current-format "#[bold,fg=yellow] #I "
-        set -g window-status-current-style "bg=default"
-        set -g window-status-format " #I "
-        set -g window-status-style "bg=default,fg=white"
-
-        set -g status-right "#[fg=white] %a %d %b │ \uf017 %H:%M "
-
-        # set -g window-list "#[fg=white] #S "
-
-        set -g status-bg "default"
-        set -g status-interval 1
-
-        # Enable mouse mode
-        set -g mouse on
-
-        # Pane border styling
-        set -g pane-border-status top
-        set -g pane-border-format ""
-
-        set-window-option -g pane-active-border-style fg=white
-
-        # tmux-resurrect
-        # Save session: prefix + Ctrl-s (Ctrl-Space + Ctrl-s)
-        # Restore session: prefix + Ctrl-r (Ctrl-Space + Ctrl-r)
-
-        # tmux-continuum
-        set -g @continuum-restore 'on'
-        set -g @continuum-save-interval '15'
-      '';
+      extraConfig = builtins.readFile ./tmux.conf;
     };
 
     # modern vim
