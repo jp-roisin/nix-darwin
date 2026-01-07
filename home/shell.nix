@@ -1,10 +1,10 @@
-{ ... }:
+{ username, ... }:
 {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     initContent = ''
-      export DEFAULT_USER="jp"
+      export DEFAULT_USER="${username}"
       export PATH="$PATH:/usr/local/go/bin:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
       export PATH="$HOME/.local/share/mise/installs/node/22.17.0/bin:$PATH"
       [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"

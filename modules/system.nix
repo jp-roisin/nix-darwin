@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 {
   system = {
-    primaryUser = "jp";
+    primaryUser = username;
     stateVersion = 6;
     # activationScripts are executed every time you boot the system or run `nixos-rebuild` / `darwin-rebuild`.
     # activationScripts.postUserActivation.text = ''
