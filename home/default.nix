@@ -10,7 +10,7 @@
 
   # Run theme switcher on home-manager activation to set initial theme
   home.activation.alacrittyThemeSetup = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    $DRY_RUN_CMD /Users/${username}/.nix-profile/bin/alacritty-theme-switcher 2>/dev/null || true
+    $DRY_RUN_CMD /etc/nix-darwin/scripts/alacritty_theme_switcher.sh 2>/dev/null || true
   '';
 
   # Home Manager needs a bit of information about you and the
