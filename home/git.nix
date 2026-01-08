@@ -1,5 +1,6 @@
 {
   lib,
+  useremail,
   ...
 }:
 {
@@ -16,7 +17,7 @@
     lfs.enable = true;
 
     userName = "jp-roisin";
-    userEmail = "jeanpaul.roisin@protonmail.com";
+    userEmail = useremail;
 
     includes = [
       {

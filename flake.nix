@@ -45,7 +45,7 @@
     }:
     let
       username = "jp";
-      useremail = "jeanpaul.roisin@protonmail.com";
+      useremail = "72938245+jp-roisin@users.noreply.github.com";
       system = "aarch64-darwin";
       hostname = "macbook";
 
