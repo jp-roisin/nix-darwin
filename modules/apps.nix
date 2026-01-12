@@ -59,7 +59,7 @@
       "htop"
       "mas"
       "watchman"
-      "postgresql@17"
+      "postgresql@18"
       "opencode"
       "redis"
       "luacheck"
