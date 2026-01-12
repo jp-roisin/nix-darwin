@@ -63,6 +63,7 @@
       "opencode"
       "redis"
       "luacheck"
+      "tty-share"
     ];
 
     # `brew install --cask`
