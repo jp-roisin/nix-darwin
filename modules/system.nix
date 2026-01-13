@@ -10,6 +10,12 @@
     # /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     # '';
 
+    # Restart alacritty theme monitor after rebuild to pick up script changes
+    activationScripts.postActivation.text = ''
+      echo "Restarting alacritty theme monitor service..."
+      /bin/launchctl kickstart -k "gui/$(id -u ${username})/org.nixos.alacritty-theme-monitor" 2>/dev/null || true
+    '';
+
     defaults = {
       menuExtraClock.Show24Hour = true; # show 24 hour clock
 
@@ -202,6 +208,8 @@
         ];
         RunAtLoad = true;
         KeepAlive = true;
+        StandardOutPath = "/tmp/alacritty-theme-monitor.log";
+        StandardErrorPath = "/tmp/alacritty-theme-monitor.err.log";
       };
     };
   };

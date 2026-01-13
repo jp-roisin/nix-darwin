@@ -5,7 +5,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 THEME_SWITCHER="$SCRIPT_DIR/alacritty_theme_switcher.sh"
-CHECK_INTERVAL=5  # seconds
+CHECK_INTERVAL=3  # seconds
 
 # Run once on startup
 "$THEME_SWITCHER"

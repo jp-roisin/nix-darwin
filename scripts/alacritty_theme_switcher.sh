@@ -3,9 +3,11 @@
 
 set -euo pipefail
 
-THEME_DIR="$HOME/.config/alacritty/themes"
+# Get HOME directory reliably even when run by launchd
+USER_HOME="${HOME:-$(eval echo ~$(whoami))}"
+THEME_DIR="$USER_HOME/.config/alacritty/themes"
 ACTIVE_THEME_LINK="$THEME_DIR/active-theme.toml"
-DARK_THEME="custom_ayu_mirage.toml"
+DARK_THEME="ayu_dark.toml"
 LIGHT_THEME="ayu_light.toml"
 
 # Get current macOS appearance (returns "Dark" or "Light")
@@ -22,4 +24,4 @@ fi
 ln -sf "$THEME_DIR/$theme" "$ACTIVE_THEME_LINK"
 
 # Touch alacritty config to trigger reload
-touch "$HOME/.config/alacritty/alacritty.toml" 2>/dev/null || true
+touch "$USER_HOME/.config/alacritty/alacritty.toml" 2>/dev/null || true
