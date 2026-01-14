@@ -48,7 +48,7 @@
       settings = {
         # Theme automatically switches based on macOS appearance
         # Managed by scripts/alacritty_theme_switcher.sh
-        general.import = [ "~/.config/alacritty/themes/active-theme.toml" ];
+        general.import = [ "~/.config/alacritty/alacritty-theme/themes/active-theme.toml" ];
         window = {
           dimensions = {
             columns = 80;

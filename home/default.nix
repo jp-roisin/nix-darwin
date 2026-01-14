@@ -1,4 +1,4 @@
-{ username, lib, ... }:
+{ username, lib, pkgs, ... }:
 {
   # import sub modules
   imports = [
@@ -10,8 +10,19 @@
     # ./starship.nix
   ];
 
+  # Clone alacritty-theme repository if it doesn't exist (for new machines)
+  home.activation.cloneAlacrittyThemes = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    REPO_DIR="$HOME/.config/alacritty/alacritty-theme"
+
+    if [ ! -d "$REPO_DIR/.git" ]; then
+      $VERBOSE_ECHO "Cloning alacritty-theme repository..."
+      $DRY_RUN_CMD mkdir -p "$HOME/.config/alacritty"
+      $DRY_RUN_CMD ${lib.getExe pkgs.git} clone https://github.com/alacritty/alacritty-theme.git "$REPO_DIR"
+    fi
+  '';
+
   # Run theme switcher on home-manager activation to set initial theme
-  home.activation.alacrittyThemeSetup = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  home.activation.alacrittyThemeSetup = lib.hm.dag.entryAfter ["cloneAlacrittyThemes"] ''
     $DRY_RUN_CMD /etc/nix-darwin/scripts/alacritty_theme_switcher.sh 2>/dev/null || true
   '';
 
