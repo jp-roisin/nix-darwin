@@ -6,6 +6,7 @@
     ./core.nix
     ./git.nix
     ./borders.nix
+    ./aerospace.nix
     # ./starship.nix
   ];
 
