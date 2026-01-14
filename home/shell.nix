@@ -1,8 +1,34 @@
-{ username, ... }:
+{ username, pkgs, ... }:
 {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+
+    # Declarative plugin management
+    plugins = [
+      {
+        name = "zsh-autosuggestions";
+        src = pkgs.zsh-autosuggestions;
+        file = "share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh";
+      }
+      {
+        name = "alias-tips";
+        src = pkgs.fetchFromGitHub {
+          owner = "djui";
+          repo = "alias-tips";
+          rev = "master";  # Tracks latest master branch
+          sha256 = "sha256-ZFWrwcwwwSYP5d8k7Lr/hL3WKAZmgn51Q9hYL3bq9vE=";
+        };
+        file = "alias-tips.plugin.zsh";
+      }
+      {
+        # IMPORTANT: Must be loaded last
+        name = "zsh-syntax-highlighting";
+        src = pkgs.zsh-syntax-highlighting;
+        file = "share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
+      }
+    ];
+
     initContent = ''
       export DEFAULT_USER="${username}"
       export PATH="$PATH:/usr/local/go/bin:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
@@ -24,11 +50,6 @@
         "tmux"
         "docker-compose"
         "docker"
-
-        # Manual install required:
-        "alias-tips"
-        "zsh-autosuggestions"
-        "zsh-syntax-highlighting"
       ];
       # theme = "gozilla";
       theme = "agnoster";
