@@ -212,6 +212,15 @@
         StandardErrorPath = "/tmp/alacritty-theme-monitor.err.log";
       };
     };
+
+    # Borders - window border manager (reads config from ~/.config/borders/bordersrc)
+    borders = {
+      serviceConfig = {
+        ProgramArguments = [ "/opt/homebrew/opt/borders/bin/borders" ];
+        RunAtLoad = true;
+        KeepAlive = true;
+      };
+    };
   };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
