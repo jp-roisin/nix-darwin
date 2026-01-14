@@ -16,8 +16,17 @@
     enable = true;
     lfs.enable = true;
 
-    userName = "jp-roisin";
-    userEmail = useremail;
+    settings = {
+      user = {
+        name = "jp-roisin";
+        email = useremail;
+      };
+      init.defaultBranch = "main";
+      push.autoSetupRemote = true;
+      core.editor = "nvim";
+      merge.conflictstyle = "diff3";
+      rerere.autoupdate = true;
+    };
 
     includes = [
       {
@@ -26,20 +35,13 @@
         condition = "gitdir:~/work/";
       }
     ];
+  };
 
-    extraConfig = {
-      init.defaultBranch = "main";
-      push.autoSetupRemote = true;
-      core.editor = "nvim";
-      merge.conflictstyle = "diff3";
-      rerere.autoupdate = true;
-    };
-
-    delta = {
-      enable = true;
-      options = {
-        features = "side-by-side";
-      };
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      features = "side-by-side";
     };
   };
 }
