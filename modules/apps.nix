@@ -65,6 +65,7 @@
       "redis"
       "luacheck"
       "tty-share"
+      "pnpm"
     ];
 
     # `brew install --cask`
