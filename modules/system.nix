@@ -19,7 +19,7 @@
     defaults = {
       menuExtraClock.Show24Hour = true; # show 24 hour clock
 
-      universalaccess.reduceMotion = true; # workspace animation
+      # universalaccess.reduceMotion = true; # workspace animation - disabled due to permission issues
 
       hitoolbox.AppleFnUsageType = null;
 
