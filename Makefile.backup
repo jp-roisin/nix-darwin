@@ -1,0 +1,6 @@
+build:
+	nix build .#darwinConfigurations.macbook-pro-m5.system \
+	   --extra-experimental-features 'nix-command flakes'
+
+	sudo ./result/sw/bin/darwin-rebuild switch --flake .#macbook-pro-m5
+	./scripts/brew_no_quarantine.sh

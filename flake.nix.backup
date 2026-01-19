@@ -44,55 +44,36 @@
       ...
     }:
     let
-      # Define all machines with their specific configurations
-      machines = {
-        macbook = {
-          username = "jp";
-          useremail = "72938245+jp-roisin@users.noreply.github.com";
-          system = "aarch64-darwin";
-          hostname = "macbook";
-        };
-        "macbook-pro-m5" = {
-          username = "jp";
-          useremail = "72938245+jp-roisin@users.noreply.github.com";
-          system = "aarch64-darwin";
-          hostname = "macbook-pro-m5";
-        };
+      username = "jp";
+      useremail = "72938245+jp-roisin@users.noreply.github.com";
+      system = "aarch64-darwin";
+      hostname = "macbook-pro-m5";
+
+      specialArgs = inputs // {
+        inherit username useremail hostname;
       };
-
-      # Generate configurations for all machines dynamically
-      darwinConfigurations = builtins.listToAttrs (
-        map (machineName: {
-          name = machineName;
-          value = darwin.lib.darwinSystem {
-            system = machines.${machineName}.system;
-            specialArgs = inputs // {
-              inherit (machines.${machineName}) username useremail hostname;
-            };
-            modules = [
-              ./modules/nix-core.nix
-              ./modules/system.nix
-              ./modules/apps.nix
-              ./modules/host-users.nix
-
-              # home manager
-              home-manager.darwinModules.home-manager
-              {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.extraSpecialArgs = inputs // {
-                  inherit (machines.${machineName}) username useremail hostname;
-                };
-                home-manager.users.${machines.${machineName}.username} = import ./home/default.nix;
-              }
-            ];
-          };
-        }) (builtins.attrNames machines)
-      );
     in
     {
-      inherit darwinConfigurations;
+      darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
+        inherit system specialArgs;
+        modules = [
+          ./modules/nix-core.nix
+          ./modules/system.nix
+          ./modules/apps.nix
+          ./modules/host-users.nix
+
+          # home manager
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = specialArgs;
+            home-manager.users.${username} = import ./home/default.nix;
+            # home-manager.users.${username} = import ./home/default.nix { inherit username useremail; };
+          }
+        ];
+      };
       # nix code formatter
-      formatter."aarch64-darwin" = nixpkgs.legacyPackages."aarch64-darwin".alejandra;
+      formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
     };
 }
