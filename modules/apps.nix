@@ -55,7 +55,6 @@
       "ffmpeg"
       "youplot"
       "pandoc"
-      "vue-language-server"
       "libpq"
       "htop"
       "mas"
@@ -65,7 +64,6 @@
       "redis"
       "luacheck"
       "tty-share"
-      "pnpm"
     ];
 
     # `brew install --cask`
