@@ -92,6 +92,7 @@
       "webstorm"
       "raspberry-pi-imager"
       "datagrip"
+      "redis-insight"
 
       # Requiring: scripts/brew_no_quarantine.sh
       "chromium"
