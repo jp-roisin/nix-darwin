@@ -68,7 +68,6 @@
 
     # `brew install --cask`
     casks = [
-      "firefox"
       "waterfox"
       "alacritty"
       "alfred"
@@ -79,7 +78,6 @@
       "stats"
       "nikitabobko/tap/aerospace"
       "gimp"
-      "zen"
       "tailscale-app"
       "jellyfin-media-player"
       "discord"
