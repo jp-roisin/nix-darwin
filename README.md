@@ -109,9 +109,6 @@ _TODO: Document what's automatically configured after installation_
   - [ ] Install: `brew install gh`
   - [ ] Authenticate: `gh auth login`
 
-- [ ] **Rust**
-  - [ ] Run: `rustup-init` to complete Rust installation
-
 - [ ] **Mise**
   - [ ] Configure Node.js: `mise use --global node@lts`
   - [ ] Configure Python: `mise use --global python@latest`

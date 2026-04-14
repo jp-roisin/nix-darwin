@@ -44,11 +44,11 @@
     # `brew install`
     brews = [
       "autojump"
-      "rustup" # Install rust using `rustup-init`
       "mise"
       "lua-language-server"
       "git-filter-repo"
       "felixkratz/formulae/borders"
+      "felixkratz/formulae/sketchybar"
       "transmission-cli"
       "texlab"
       "yt-dlp"
@@ -64,6 +64,7 @@
       "redis"
       "luacheck"
       "tty-share"
+      "gh"
     ];
 
     # `brew install --cask`
@@ -93,6 +94,8 @@
       "raspberry-pi-imager"
       "datagrip"
       "redis-insight"
+      "zed"
+      "protonvpn"
 
       # Requiring: scripts/brew_no_quarantine.sh
       "chromium"

@@ -7,6 +7,7 @@
     ./git.nix
     ./borders.nix
     ./aerospace.nix
+    ./rust.nix
     # ./starship.nix
   ];
 
