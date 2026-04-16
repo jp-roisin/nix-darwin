@@ -59,7 +59,7 @@
             y = 12;
           };
           dynamic_padding = false;
-          decorations = "Full";
+          decorations = "Buttonless";
           startup_mode = "Windowed";
           title = "Alacritty";
           class = {
