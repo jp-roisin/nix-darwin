@@ -97,6 +97,7 @@
       "zed"
       "protonvpn"
       "claude-code"
+      "claude"
 
       # Requiring: scripts/brew_no_quarantine.sh
       "chromium"
