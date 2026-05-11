@@ -65,6 +65,7 @@
       "luacheck"
       "tty-share"
       "gh"
+      "stripe/stripe-cli/stripe"
     ];
 
     # `brew install --cask`
