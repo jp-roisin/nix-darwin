@@ -94,3 +94,7 @@ gaps.outer.right = 12
 [[on-window-detected]]
     if.app-id = "com.apple.iphonesimulator"
     run = ["layout tiling"]
+
+[[on-window-detected]]
+    if.app-id = "org.chromium.Chromium-fp"
+    run = ["move-node-to-workspace 5", "exec-and-forget sleep 0.2 && aerospace workspace-back-and-forth"]
