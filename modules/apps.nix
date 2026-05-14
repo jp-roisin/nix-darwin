@@ -66,6 +66,7 @@
       "tty-share"
       "gh"
       "stripe/stripe-cli/stripe"
+      "python"
     ];
 
     # `brew install --cask`
