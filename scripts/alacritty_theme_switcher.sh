@@ -33,8 +33,14 @@ if [ ! -f "$THEME_DIR/$theme" ]; then
     exit 1
 fi
 
-# Update symlink to point to selected theme
-ln -sf "$THEME_DIR/$theme" "$ACTIVE_THEME_LINK"
+# Idempotent: only relink + reload when the active theme is not already the
+# desired one. This lets the monitor call us every loop (level-triggered)
+# without reloading alacritty on every tick.
+DESIRED="$THEME_DIR/$theme"
+CURRENT=$(readlink "$ACTIVE_THEME_LINK" 2>/dev/null || echo "")
 
-# Touch alacritty config to trigger reload
-touch "$USER_HOME/.config/alacritty/alacritty.toml" 2>/dev/null || true
+if [ "$CURRENT" != "$DESIRED" ]; then
+    ln -sf "$DESIRED" "$ACTIVE_THEME_LINK"
+    # Touch alacritty config to trigger a live reload in open windows.
+    touch "$USER_HOME/.config/alacritty/alacritty.toml" 2>/dev/null || true
+fi
