@@ -13,10 +13,35 @@
     # /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     # '';
 
-    # Restart alacritty theme monitor after rebuild to pick up script changes
+    # Restart user agents after every rebuild so they pick up new scripts/
+    # plists without a manual relaunch. kickstart -k = kill + (re)start, and
+    # also starts an agent that was not running. Order respects dependencies
+    # (aerospace before the things that query it).
     activationScripts.postActivation.text = ''
-      echo "Restarting alacritty theme monitor service..."
-      /bin/launchctl kickstart -k "gui/$(id -u ${username})/org.nixos.alacritty-theme-monitor" 2>/dev/null || true
+      echo "Restarting user agents..."
+      uid=$(id -u ${username})
+
+      # Long-running agents we expect to stay alive after (re)start. macOS can
+      # kill a hardened binary with OS_REASON_CODESIGNING on the immediate
+      # restart after a SIGKILL, so verify it actually came up and retry.
+      for svc in \
+        borders \
+        sketchybar \
+        sketchybar-menubar-watch \
+        alacritty-theme-monitor; do
+        target="gui/$uid/org.nixos.$svc"
+        for _ in 1 2 3 4 5; do
+          /bin/launchctl kickstart -k "$target" 2>/dev/null || true
+          sleep 1
+          if /bin/launchctl print "$target" 2>/dev/null | grep -q "state = running"; then
+            break
+          fi
+        done
+      done
+
+      # aerospace is launched via `open -a`; the agent exits 0 once the app is
+      # up, so just (re)start it without expecting the agent to stay running.
+      /bin/launchctl kickstart -k "gui/$uid/org.nixos.aerospace" 2>/dev/null || true
     '';
 
     defaults = {
@@ -228,7 +253,7 @@
     # SketchyBar - status bar (reads config from ~/.config/sketchybar/sketchybarrc)
     sketchybar = {
       serviceConfig = {
-        ProgramArguments = [ "/opt/homebrew/bin/sketchybar" ];
+        ProgramArguments = ["/opt/homebrew/bin/sketchybar"];
         RunAtLoad = true;
         KeepAlive = true;
         StandardOutPath = "/tmp/sketchybar.log";

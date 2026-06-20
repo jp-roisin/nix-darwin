@@ -131,9 +131,20 @@
       ##### Finalize #####
       sketchybar --update
 
-      # Draw initial workspace highlight (no event has fired yet on startup).
-      sketchybar --trigger aerospace_workspace_change \
-        FOCUSED_WORKSPACE="$(aerospace list-workspaces --focused)"
+      # Draw initial workspace highlight. On a fresh boot sketchybar may start
+      # before AeroSpace is ready, so retry briefly (in the background, to not
+      # block startup) and fall back to workspace 1 if it never answers.
+      (
+        focused=""
+        for _ in $(seq 1 20); do
+          focused=$(aerospace list-workspaces --focused 2>/dev/null)
+          [ -n "$focused" ] && break
+          sleep 0.5
+        done
+        [ -z "$focused" ] && focused=1
+        sketchybar --trigger aerospace_workspace_change \
+          FOCUSED_WORKSPACE="$focused"
+      ) &
     '';
   };
 
