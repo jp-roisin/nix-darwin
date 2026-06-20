@@ -100,7 +100,6 @@
       "protonvpn"
       "claude-code"
       "claude"
-      "gcloud-cli"
 
       # Requiring: scripts/brew_no_quarantine.sh
       "chromium"
