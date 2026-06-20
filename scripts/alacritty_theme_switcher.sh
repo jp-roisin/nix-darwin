@@ -7,7 +7,7 @@ set -euo pipefail
 USER_HOME="${HOME:-$(eval echo ~$(whoami))}"
 THEME_DIR="$USER_HOME/.config/alacritty/alacritty-theme/themes"
 ACTIVE_THEME_LINK="$THEME_DIR/active-theme.toml"
-DARK_THEME="ayu_dark.toml"
+DARK_THEME="ayu_mirage.toml"
 LIGHT_THEME="ayu_light.toml"
 
 # Verify theme directory exists
