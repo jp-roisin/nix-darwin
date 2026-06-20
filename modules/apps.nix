@@ -39,6 +39,7 @@
     taps = [
       "FelixKratz/formulae"
       "nikitabobko/tap"
+      "modem-dev/tap"
     ];
 
     # `brew install`
@@ -67,6 +68,7 @@
       "gh"
       "stripe/stripe-cli/stripe"
       "python"
+      "modem-dev/tap/hunk"
     ];
 
     # `brew install --cask`
