@@ -50,6 +50,7 @@
       "git-filter-repo"
       "felixkratz/formulae/borders"
       "felixkratz/formulae/sketchybar"
+      "cliclick" # read cursor position (sketchybar menu-bar auto-hide)
       "transmission-cli"
       "texlab"
       "yt-dlp"

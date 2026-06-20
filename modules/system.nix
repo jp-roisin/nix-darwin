@@ -228,11 +228,26 @@
     # SketchyBar - status bar (reads config from ~/.config/sketchybar/sketchybarrc)
     sketchybar = {
       serviceConfig = {
-        ProgramArguments = ["/opt/homebrew/bin/sketchybar"];
+        ProgramArguments = [ "/opt/homebrew/bin/sketchybar" ];
         RunAtLoad = true;
         KeepAlive = true;
         StandardOutPath = "/tmp/sketchybar.log";
         StandardErrorPath = "/tmp/sketchybar.err.log";
+      };
+    };
+
+    # Hide sketchybar while the cursor is in the menu-bar reveal zone, so the
+    # auto-hidden native macOS menu bar stays readable.
+    sketchybar-menubar-watch = {
+      serviceConfig = {
+        ProgramArguments = [
+          "/bin/bash"
+          "/etc/nix-darwin/scripts/sketchybar_menubar_watch.sh"
+        ];
+        RunAtLoad = true;
+        KeepAlive = true;
+        StandardOutPath = "/tmp/sketchybar-menubar-watch.log";
+        StandardErrorPath = "/tmp/sketchybar-menubar-watch.err.log";
       };
     };
   };
