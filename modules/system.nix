@@ -1,5 +1,8 @@
-{ pkgs, username, ... }:
 {
+  pkgs,
+  username,
+  ...
+}: {
   system = {
     primaryUser = username;
     stateVersion = 6;
@@ -175,7 +178,7 @@
   launchd.user.agents = {
     aerospace = {
       serviceConfig = {
-        ProgramArguments = [ 
+        ProgramArguments = [
           "/usr/bin/open"
           "-a"
           "/Applications/AeroSpace.app"
@@ -188,7 +191,7 @@
 
     docker-desktop = {
       serviceConfig = {
-        ProgramArguments = [ 
+        ProgramArguments = [
           "/usr/bin/open"
           "-a"
           "/Applications/Docker.app"
@@ -216,9 +219,20 @@
     # Borders - window border manager (reads config from ~/.config/borders/bordersrc)
     borders = {
       serviceConfig = {
-        ProgramArguments = [ "/opt/homebrew/opt/borders/bin/borders" ];
+        ProgramArguments = ["/opt/homebrew/opt/borders/bin/borders"];
         RunAtLoad = true;
         KeepAlive = true;
+      };
+    };
+
+    # SketchyBar - status bar (reads config from ~/.config/sketchybar/sketchybarrc)
+    sketchybar = {
+      serviceConfig = {
+        ProgramArguments = ["/opt/homebrew/bin/sketchybar"];
+        RunAtLoad = true;
+        KeepAlive = true;
+        StandardOutPath = "/tmp/sketchybar.log";
+        StandardErrorPath = "/tmp/sketchybar.err.log";
       };
     };
   };

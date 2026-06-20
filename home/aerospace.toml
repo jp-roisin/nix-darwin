@@ -16,6 +16,13 @@ after-startup-command = [
   "exec-and-forget borders"
 ]
 
+# Notify sketchybar when the focused workspace changes
+exec-on-workspace-change = [
+  '/bin/bash',
+  '-c',
+  '/opt/homebrew/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+]
+
 # CUSTOM GAPS
 gaps.inner.horizontal = 12
 gaps.inner.vertical = 12

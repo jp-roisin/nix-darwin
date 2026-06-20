@@ -1,5 +1,9 @@
-{ username, lib, pkgs, ... }:
 {
+  username,
+  lib,
+  pkgs,
+  ...
+}: {
   # import sub modules
   imports = [
     ./shell.nix
@@ -7,6 +11,7 @@
     ./git.nix
     ./borders.nix
     ./aerospace.nix
+    ./sketchybar.nix
     ./rust.nix
     # ./starship.nix
   ];
