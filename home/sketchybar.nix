@@ -31,7 +31,7 @@
 
       if [[ "$appearance" == "Dark" ]]; then
         # Ayu Mirage
-        export BAR_COLOR=0xf01f2430
+        export BAR_COLOR=0xff1f2430
         export FG_COLOR=0xffcbccc6
         export ACCENT_COLOR=0xfffdcc60
         export ICON_ACTIVE=0xff60b8d6
@@ -40,7 +40,7 @@
         export RED_COLOR=0xfff08778
       else
         # Ayu Light
-        export BAR_COLOR=0xf0fcfcfc
+        export BAR_COLOR=0xfffcfcfc
         export FG_COLOR=0xff5c6166
         export ACCENT_COLOR=0xffeba54d
         export ICON_ACTIVE=0xff4196df
@@ -71,6 +71,9 @@
       sketchybar --bar \
         height=32 \
         position=top \
+        margin=12 \
+        y_offset=2 \
+        corner_radius=12 \
         padding_left=8 \
         padding_right=8 \
         color="$BAR_COLOR"
@@ -89,30 +92,38 @@
       ##### Left: aerospace workspaces #####
       sketchybar --add event aerospace_workspace_change
 
-      for sid in $(aerospace list-workspaces --all); do
+      for sid in 1 2 3 4 5; do
         sketchybar --add item space.$sid left \
           --subscribe space.$sid aerospace_workspace_change \
           --set space.$sid \
             icon="$sid" \
+            icon.padding_left=8 \
+            icon.padding_right=8 \
             label.drawing=off \
             click_script="aerospace workspace $sid" \
             script="$PLUGIN_DIR/aerospace.sh $sid"
       done
 
-      ##### Right: clock | battery | wifi (added right-to-left) #####
+      ##### Right: wifi  battery  clock (added right-to-left) #####
+      # No separators; extra left padding on each section provides the gap.
       sketchybar --add item clock right \
         --set clock \
+          padding_left=16 \
           update_freq=1 \
           script="$PLUGIN_DIR/clock.sh"
 
       sketchybar --add item battery right \
         --set battery \
+          icon.font="$FONT:Bold:16.0" \
+          icon.padding_right=4 \
+          padding_left=16 \
           update_freq=30 \
           script="$PLUGIN_DIR/battery.sh" \
         --subscribe battery system_woke power_source_change
 
       sketchybar --add item wifi right \
         --set wifi \
+          icon.font="$FONT:Bold:16.0" \
           update_freq=10 \
           script="$PLUGIN_DIR/wifi.sh" \
         --subscribe wifi wifi_change system_woke
@@ -166,24 +177,25 @@
 
       [[ -z "$pct" ]] && exit 0
 
-      color="$FG_COLOR"
+      # Material Design battery glyphs as octal UTF-8 (works under /bin/sh,
+      # which is how sketchybar invokes plugins; $'...' would not).
       if [[ "$charging" -gt 0 ]]; then
-        icon=""
-        color="$GREEN_COLOR"
+        icon=$(printf '\363\260\202\204')  # battery-charging F0084
       else
         case "$pct" in
-          100|9[0-9]) icon="" ;;
-          [78][0-9]) icon="" ;;
-          [56][0-9]) icon="" ;;
-          [34][0-9]) icon="" ;;
-          [12][0-9]) icon="" ;;
-          *) icon=""; color="$RED_COLOR" ;;
+          100|9[0-9]) icon=$(printf '\363\260\201\271') ;;  # battery full F0079
+          [78][0-9])  icon=$(printf '\363\260\202\202') ;;  # battery-80 F0082
+          [56][0-9])  icon=$(printf '\363\260\202\200') ;;  # battery-60 F0080
+          [34][0-9])  icon=$(printf '\363\260\201\276') ;;  # battery-40 F007E
+          [12][0-9])  icon=$(printf '\363\260\201\272') ;;  # battery-10 F007A
+          *)          icon=$(printf '\363\260\201\273') ;;  # alert F007B
         esac
       fi
 
+      # Icon uses the same color as text (FG); no state-based coloring.
       sketchybar --set "$NAME" \
         icon="$icon" \
-        icon.color="$color" \
+        icon.color="$FG_COLOR" \
         label="''${pct}%"
     '';
   };
@@ -198,11 +210,14 @@
 
       ip=$(ipconfig getifaddr en0 2>/dev/null)
 
+      # Material Design wifi glyphs as octal UTF-8 (sh-safe).
+      # Icon uses the same color as text (FG); no state-based coloring.
       if [[ -n "$ip" ]]; then
-        sketchybar --set "$NAME" icon="" icon.color="$ICON_ACTIVE" label.drawing=off
+        icon=$(printf '\363\260\226\251')  # wifi F05A9
       else
-        sketchybar --set "$NAME" icon="" icon.color="$DIM_COLOR" label.drawing=off
+        icon=$(printf '\363\260\244\255')  # wifi-off F092D
       fi
+      sketchybar --set "$NAME" icon="$icon" icon.color="$FG_COLOR" label.drawing=off
     '';
   };
 
@@ -213,7 +228,7 @@
     text = ''
       #!/usr/bin/env bash
       source "$HOME/.config/sketchybar/colors.sh"
-      sketchybar --set "$NAME" icon="" label="$(date '+%a %d %b, %H:%M:%S')"
+      sketchybar --set "$NAME" icon.drawing=off label="$(date '+%a %d %b, %H:%M:%S')"
     '';
   };
 }
