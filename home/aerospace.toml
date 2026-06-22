@@ -24,12 +24,19 @@ exec-on-workspace-change = [
 ]
 
 # CUSTOM GAPS
-gaps.inner.horizontal = 12
-gaps.inner.vertical = 12
-gaps.outer.left = 12
-gaps.outer.bottom = 12
-gaps.outer.top = 12
-gaps.outer.right = 12
+[gaps]
+inner.horizontal = 12
+inner.vertical = 12
+outer.left = 12
+outer.bottom = 12
+outer.right = 12
+
+# Top gap clears the floating sketchybar (~34px) plus breathing room.
+# Larger on the built-in notch display; other monitors use the fallback.
+outer.top = [
+  { monitor."(Built-in|Retina|Liquid|Color LCD)" = 12 },
+  45,
+]
 
 [mode.main.binding]
     # i3 wraps focus by default
