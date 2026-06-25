@@ -111,6 +111,7 @@
     # `mas install`
     masApps = {
       Xcode = 497799835;
+      Wireguard = 1451685025;
     };
   };
 }
