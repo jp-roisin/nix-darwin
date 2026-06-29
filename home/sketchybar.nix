@@ -1,4 +1,4 @@
-{...}: {
+{ lib, ... }: {
   ##########################################################################
   #
   #  SketchyBar - minimal status bar, theme-aware (ayu mirage / ayu light)
@@ -14,6 +14,16 @@
   #  to avoid nix interpolation.
   #
   ##########################################################################
+
+  # Reload the running sketchybar after a switch so config/plugin changes take
+  # effect without a manual `sketchybar --reload` or relogin. No-op if the bar
+  # is not running. Runs after files are written (writeBoundary).
+  home.activation.reloadSketchybar =
+    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if /usr/bin/pgrep -x sketchybar > /dev/null 2>&1; then
+        run /opt/homebrew/bin/sketchybar --reload || true
+      fi
+    '';
 
   # Shared color palette + theme selection.
   home.file.".config/sketchybar/colors.sh" = {
@@ -120,6 +130,18 @@
           update_freq=30 \
           script="$PLUGIN_DIR/battery.sh" \
         --subscribe battery system_woke power_source_change
+
+      # Claude Max session usage %. Added before wifi so wifi sits to its left.
+      # padding_left=16 gives the section gap (to its left, between it and wifi).
+      # update_freq=300 (5 min) to avoid rate-limiting the usage endpoint.
+      sketchybar --add item claude_usage right \
+        --set claude_usage \
+          icon.font="$FONT:Bold:16.0" \
+          icon.padding_right=4 \
+          padding_left=16 \
+          update_freq=300 \
+          script="$PLUGIN_DIR/claude_usage.sh" \
+        --subscribe claude_usage system_woke
 
       sketchybar --add item wifi right \
         --set wifi \
@@ -240,6 +262,60 @@
       #!/usr/bin/env bash
       source "$HOME/.config/sketchybar/colors.sh"
       sketchybar --set "$NAME" icon.drawing=off label="$(date '+%a %d %b, %H:%M:%S')"
+    '';
+  };
+
+  # Plugin: Claude Max (5x) current 5-hour session usage %.
+  #
+  # No official API. Reads the OAuth access token Claude Code stores locally
+  # (~/.claude/.credentials.json, else the login keychain under service
+  # "Claude Code-credentials") and calls the undocumented usage endpoint.
+  # Response field .five_hour.utilization is the session % consumed.
+  # Defensive: any missing token / curl failure / parse failure -> "--", exit 0.
+  home.file.".config/sketchybar/plugins/claude_usage.sh" = {
+    force = true;
+    executable = true;
+    text = ''
+      #!/usr/bin/env bash
+      source "$HOME/.config/sketchybar/colors.sh"
+
+      # Claude-style sparkle glyph (Material Design "creation" F0674) as octal
+      # UTF-8 (sh-safe, like the battery/wifi items). No state-based coloring;
+      # icon + label inherit the default FG color.
+      icon=$(printf '\363\260\231\264')
+
+      # Quiet fallback shown whenever anything goes wrong, so the bar never breaks.
+      fail() {
+        sketchybar --set "$NAME" icon="$icon" icon.color="$FG_COLOR" label="--"
+        exit 0
+      }
+
+      # Read the OAuth token: credentials file first, then login keychain.
+      creds=""
+      if [ -f "$HOME/.claude/.credentials.json" ]; then
+        creds=$(cat "$HOME/.claude/.credentials.json" 2>/dev/null)
+      fi
+      if [ -z "$creds" ]; then
+        creds=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null)
+      fi
+
+      token=$(printf '%s' "$creds" | jq -r '.claudeAiOauth.accessToken // empty' 2>/dev/null)
+      [ -z "$token" ] && fail
+
+      resp=$(curl -s --max-time 5 \
+        "https://api.anthropic.com/api/oauth/usage" \
+        -H "Authorization: Bearer $token" \
+        -H "anthropic-beta: oauth-2025-04-20" \
+        -H "Content-Type: application/json" 2>/dev/null)
+
+      pct=$(printf '%s' "$resp" | jq -r '.five_hour.utilization // empty' 2>/dev/null)
+      [ -z "$pct" ] && fail
+
+      # Round to integer.
+      pct=$(printf '%.0f' "$pct" 2>/dev/null)
+      [ -z "$pct" ] && fail
+
+      sketchybar --set "$NAME" icon="$icon" icon.color="$FG_COLOR" label="''${pct}%"
     '';
   };
 }
