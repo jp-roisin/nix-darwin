@@ -95,14 +95,14 @@
       "microsoft-teams"
       "inkscape"
       "visual-studio-code"
-      "webstorm"
       "raspberry-pi-imager"
       "datagrip"
       "redis-insight"
       "zed"
       "protonvpn"
-      "claude-code"
       "claude"
+      "claude-code"
+      "obsidian"
 
       # Requiring: scripts/brew_no_quarantine.sh
       "chromium"
