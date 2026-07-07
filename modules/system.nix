@@ -7,11 +7,14 @@
     primaryUser = username;
     stateVersion = 6;
     # activationScripts are executed every time you boot the system or run `nixos-rebuild` / `darwin-rebuild`.
-    # activationScripts.postUserActivation.text = ''
-    # activateSettings -u will reload the settings from the database and apply them to the current session,
-    # so we do not need to logout and login again to make the changes take effect.
-    # /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-    # '';
+
+    # Trust Homebrew taps before homebrew activation runs (preActivation runs before the
+    # homebrew bundle step in the activation ordering).
+    activationScripts.preActivation.text = ''
+      for tap in FelixKratz/formulae nikitabobko/tap modem-dev/tap stripe/stripe-cli; do
+        sudo -H -u ${username} /opt/homebrew/bin/brew trust "$tap" 2>/dev/null || true
+      done
+    '';
 
     # Restart user agents after every rebuild so they pick up new scripts/
     # plists without a manual relaunch. kickstart -k = kill + (re)start, and
