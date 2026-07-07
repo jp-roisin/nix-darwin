@@ -70,6 +70,7 @@
       "stripe/stripe-cli/stripe"
       "python"
       "modem-dev/tap/hunk"
+      "nx"
     ];
 
     # `brew install --cask`
