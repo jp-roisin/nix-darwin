@@ -90,7 +90,8 @@
         # `defaults read NSGlobalDomain "xxx"`
         "com.apple.swipescrolldirection" = false; # enable natural scrolling(default to true)
         "com.apple.sound.beep.feedback" = 0; # disable beep sound when pressing volume up/down key
-        AppleInterfaceStyle = "Dark"; # dark mode
+        # AppleInterfaceStyle is not managed here — managed by the user via
+        # System Settings, the theme monitor reads it at runtime.
         AppleKeyboardUIMode = 3; # Mode 3 enables full keyboard control.
         ApplePressAndHoldEnabled = false; # disable press and hold
 
