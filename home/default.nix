@@ -11,6 +11,7 @@
     ./git.nix
     ./borders.nix
     ./aerospace.nix
+    ./herdr.nix
     ./sketchybar.nix
     ./rust.nix
     # ./starship.nix

@@ -1,0 +1,16 @@
+onboarding = false
+
+[theme]
+auto_switch = true
+dark_name = "one-dark"
+light_name = "one-light"
+
+[ui.sound]
+enabled = false
+
+[ui.toast]
+delivery = "herdr"
+
+[keys]
+# Prefix key to enter prefix mode (default: "ctrl+b")
+prefix = "ctrl+space"

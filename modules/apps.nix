@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, herdr, ... }:
 {
 
   ##########################################################################
@@ -22,6 +22,7 @@
     lazygit
     sqlite
     pam-reattach # Enable TouchID in tmux sessions
+    herdr.packages.${pkgs.stdenv.hostPlatform.system}.default # terminal workspace manager
   ];
 
   # The apps installed by homebrew are not managed by nix, and not reproducible!
