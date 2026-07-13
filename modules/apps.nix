@@ -34,7 +34,11 @@
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      cleanup = "zap"; # 'zap': uninstalls all formulae(and related files) not listed here.
+      # Homebrew deprecated `brew bundle --cleanup` and now exits non-zero on it,
+      # which aborts darwin-rebuild activation. Both "uninstall" and "zap" pass
+      # --cleanup, so use "none" to keep activation green.
+      # To prune unlisted formulae manually: `brew bundle cleanup --force`
+      cleanup = "none";
     };
 
     # `brew tap`
