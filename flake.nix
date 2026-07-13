@@ -34,6 +34,12 @@
       url = "github:ogulcancelik/herdr";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
+
+    # openspec — AI-native spec-driven development CLI
+    openspec = {
+      url = "github:Fission-AI/OpenSpec";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
+    };
   };
 
   # The `outputs` function will return all the build results of the flake.

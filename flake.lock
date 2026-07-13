@@ -90,13 +90,34 @@
         "type": "github"
       }
     },
+    "openspec": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-darwin"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783698404,
+        "narHash": "sha256-BfYeIFjxk/WpbmkyLP8wSNkTb+jpFhBim2I/himVtms=",
+        "owner": "Fission-AI",
+        "repo": "OpenSpec",
+        "rev": "0a99f410457271aa773d8b106f03f637f7c6b3c0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Fission-AI",
+        "repo": "OpenSpec",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "darwin": "darwin",
         "herdr": "herdr",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-darwin": "nixpkgs-darwin"
+        "nixpkgs-darwin": "nixpkgs-darwin",
+        "openspec": "openspec"
       }
     }
   },

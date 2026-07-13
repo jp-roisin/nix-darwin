@@ -1,4 +1,4 @@
-{ pkgs, herdr, ... }:
+{ pkgs, herdr, openspec, ... }:
 {
 
   ##########################################################################
@@ -23,6 +23,7 @@
     sqlite
     pam-reattach # Enable TouchID in tmux sessions
     herdr.packages.${pkgs.stdenv.hostPlatform.system}.default # terminal workspace manager
+    openspec.packages.${pkgs.stdenv.hostPlatform.system}.default # spec-driven dev CLI
   ];
 
   # The apps installed by homebrew are not managed by nix, and not reproducible!
