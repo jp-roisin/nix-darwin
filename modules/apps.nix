@@ -24,6 +24,32 @@
     pam-reattach # Enable TouchID in tmux sessions
     herdr.packages.${pkgs.stdenv.hostPlatform.system}.default # terminal workspace manager
     openspec.packages.${pkgs.stdenv.hostPlatform.system}.default # spec-driven dev CLI
+
+    # Migrated from homebrew
+    autojump
+    mise
+    lua-language-server
+    git-filter-repo
+    jankyborders # felixkratz/formulae/borders
+    sketchybar
+    transmission_4 # transmission-cli
+    texlab
+    yt-dlp
+    ffmpeg
+    youplot
+    pandoc
+    libpq
+    htop
+    mas
+    watchman
+    postgresql_18
+    opencode
+    redis
+    luaPackages.luacheck
+    tty-share
+    gh
+    stripe-cli
+    python3
   ];
 
   # The apps installed by homebrew are not managed by nix, and not reproducible!
@@ -43,40 +69,15 @@
 
     # `brew tap`
     taps = [
-      "FelixKratz/formulae"
       "nikitabobko/tap"
       "modem-dev/tap"
     ];
 
     # `brew install`
     brews = [
-      "autojump"
-      "mise"
-      "lua-language-server"
-      "git-filter-repo"
-      "felixkratz/formulae/borders"
-      "felixkratz/formulae/sketchybar"
-      "cliclick" # read cursor position (sketchybar menu-bar auto-hide)
-      "transmission-cli"
-      "texlab"
-      "yt-dlp"
-      "ffmpeg"
-      "youplot"
-      "pandoc"
-      "libpq"
-      "htop"
-      "mas"
-      "watchman"
-      "postgresql@18"
-      "opencode"
-      "redis"
-      "luacheck"
-      "tty-share"
-      "gh"
-      "stripe/stripe-cli/stripe"
-      "python"
-      "modem-dev/tap/hunk"
-      "nx"
+      "cliclick" # read cursor position (sketchybar menu-bar auto-hide); not in nixpkgs
+      "modem-dev/tap/hunk" # custom tap, not in nixpkgs
+      "nx" # not in nixpkgs
     ];
 
     # `brew install --cask`

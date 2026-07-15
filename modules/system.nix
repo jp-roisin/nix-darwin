@@ -248,7 +248,7 @@
     # Borders - window border manager (reads config from ~/.config/borders/bordersrc)
     borders = {
       serviceConfig = {
-        ProgramArguments = ["/opt/homebrew/opt/borders/bin/borders"];
+        ProgramArguments = ["${pkgs.jankyborders}/bin/borders"];
         RunAtLoad = true;
         KeepAlive = true;
       };
@@ -257,7 +257,7 @@
     # SketchyBar - status bar (reads config from ~/.config/sketchybar/sketchybarrc)
     sketchybar = {
       serviceConfig = {
-        ProgramArguments = ["/opt/homebrew/bin/sketchybar"];
+        ProgramArguments = ["${pkgs.sketchybar}/bin/sketchybar"];
         RunAtLoad = true;
         KeepAlive = true;
         StandardOutPath = "/tmp/sketchybar.log";

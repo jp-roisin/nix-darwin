@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   home.file.".config/borders/bordersrc" = {
     force = true; # overwrite existing file
@@ -14,7 +14,7 @@
         inactive_color=0xff414550
       )
 
-      /opt/homebrew/opt/borders/bin/borders "''${options[@]}"
+      ${pkgs.jankyborders}/bin/borders "''${options[@]}"
     '';
   };
 }
