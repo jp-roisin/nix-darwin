@@ -4,7 +4,7 @@
 
 set -euo pipefail
 
-SKETCHYBAR_BIN="/opt/homebrew/bin/sketchybar"
+SKETCHYBAR_BIN="/run/current-system/sw/bin/sketchybar"
 STATE_FILE="${TMPDIR:-/tmp}/sketchybar-theme.state"
 
 # Only act if sketchybar is installed and running.

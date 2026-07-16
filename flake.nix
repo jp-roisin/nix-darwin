@@ -50,36 +50,29 @@
   outputs =
     inputs@{
       self,
-      nixpkgs,
+      nixpkgs-darwin,
       darwin,
       home-manager,
       ...
     }:
     let
-      # Define all machines with their specific configurations
-      machines = {
-        macbook = {
-          username = "jp";
-          useremail = "72938245+jp-roisin@users.noreply.github.com";
-          system = "aarch64-darwin";
-          hostname = "macbook";
-        };
-        "macbook-pro-m5" = {
-          username = "jp";
-          useremail = "72938245+jp-roisin@users.noreply.github.com";
-          system = "aarch64-darwin";
-          hostname = "macbook-pro-m5";
-        };
-      };
+      # Shared across all machines; only the hostname differs.
+      username = "jp";
+      useremail = "72938245+jp-roisin@users.noreply.github.com";
+      system = "aarch64-darwin";
+      hostnames = [
+        "macbook"
+        "macbook-pro-m5"
+      ];
 
       # Generate configurations for all machines dynamically
       darwinConfigurations = builtins.listToAttrs (
-        map (machineName: {
-          name = machineName;
+        map (hostname: {
+          name = hostname;
           value = darwin.lib.darwinSystem {
-            system = machines.${machineName}.system;
+            inherit system;
             specialArgs = inputs // {
-              inherit (machines.${machineName}) username useremail hostname;
+              inherit username useremail hostname;
             };
             modules = [
               ./modules/nix-core.nix
@@ -93,18 +86,18 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.extraSpecialArgs = inputs // {
-                  inherit (machines.${machineName}) username useremail hostname;
+                  inherit username useremail hostname;
                 };
-                home-manager.users.${machines.${machineName}.username} = import ./home/default.nix;
+                home-manager.users.${username} = import ./home/default.nix;
               }
             ];
           };
-        }) (builtins.attrNames machines)
+        }) hostnames
       );
     in
     {
       inherit darwinConfigurations;
       # nix code formatter
-      formatter."aarch64-darwin" = nixpkgs.legacyPackages."aarch64-darwin".alejandra;
+      formatter."aarch64-darwin" = nixpkgs-darwin.legacyPackages."aarch64-darwin".alejandra;
     };
 }

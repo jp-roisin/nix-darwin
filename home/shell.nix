@@ -16,7 +16,7 @@
         src = pkgs.fetchFromGitHub {
           owner = "djui";
           repo = "alias-tips";
-          rev = "master";  # Tracks latest master branch
+          rev = "41cb143ccc3b8cc444bf20257276cb43275f65c4";
           sha256 = "sha256-ZFWrwcwwwSYP5d8k7Lr/hL3WKAZmgn51Q9hYL3bq9vE=";
         };
         file = "alias-tips.plugin.zsh";
@@ -31,12 +31,11 @@
 
     initContent = ''
       export DEFAULT_USER="${username}"
-      export PATH="$PATH:/usr/local/go/bin:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
+      export PATH="$PATH:$HOME/.local/bin:$HOME/go/bin"
       [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
       eval "$(mise activate zsh)"
       export PATH="/usr/local/texlive/2025/bin/universal-darwin:$PATH"
       export PATH="/Library/TeX/texbin:$PATH"
-      export PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
       export PATH="$HOME/bin:$PATH"
     '';
 

@@ -38,7 +38,6 @@
     ffmpeg
     youplot
     pandoc
-    libpq
     htop
     mas
     watchman

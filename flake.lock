@@ -60,20 +60,6 @@
         "type": "github"
       }
     },
-    "nixpkgs": {
-      "locked": {
-        "lastModified": 1768302833,
-        "narHash": "sha256-h5bRFy9bco+8QcK7rGoOiqMxMbmn21moTACofNLRMP4=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "61db79b0c6b838d9894923920b612048e1201926",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
-      }
-    },
     "nixpkgs-darwin": {
       "locked": {
         "lastModified": 1768302833,
@@ -115,7 +101,6 @@
         "darwin": "darwin",
         "herdr": "herdr",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs",
         "nixpkgs-darwin": "nixpkgs-darwin",
         "openspec": "openspec"
       }

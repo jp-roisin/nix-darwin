@@ -5,7 +5,7 @@
 
 set -uo pipefail
 
-SKETCHYBAR_BIN="/opt/homebrew/bin/sketchybar"
+SKETCHYBAR_BIN="/run/current-system/sw/bin/sketchybar"
 CLICLICK_BIN="/opt/homebrew/bin/cliclick"
 
 # Top reveal zone in points. Notch MacBooks reveal up to ~38px; non-notch ~25.

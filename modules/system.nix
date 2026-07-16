@@ -11,7 +11,7 @@
     # Trust Homebrew taps before homebrew activation runs (preActivation runs before the
     # homebrew bundle step in the activation ordering).
     activationScripts.preActivation.text = ''
-      for tap in FelixKratz/formulae nikitabobko/tap modem-dev/tap stripe/stripe-cli; do
+      for tap in nikitabobko/tap modem-dev/tap; do
         sudo -H -u ${username} /opt/homebrew/bin/brew trust "$tap" 2>/dev/null || true
       done
     '';

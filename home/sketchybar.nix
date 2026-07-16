@@ -21,7 +21,7 @@
   home.activation.reloadSketchybar =
     lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       if /usr/bin/pgrep -x sketchybar > /dev/null 2>&1; then
-        run /opt/homebrew/bin/sketchybar --reload || true
+        run /run/current-system/sw/bin/sketchybar --reload || true
       fi
     '';
 
@@ -35,7 +35,7 @@
 
       # launchd-spawned plugins inherit a minimal PATH; fix it here since this
       # file is sourced by the rc and every plugin.
-      export PATH="/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+      export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 
       appearance=$(defaults read -g AppleInterfaceStyle 2>/dev/null || echo "Light")
 
@@ -68,8 +68,8 @@
     text = ''
       #!/usr/bin/env bash
 
-      # launchd starts us with a minimal PATH; ensure homebrew bins are found.
-      export PATH="/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+      # launchd starts us with a minimal PATH; ensure nix + homebrew bins are found.
+      export PATH="/run/current-system/sw/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 
       CONFIG_DIR="$HOME/.config/sketchybar"
       PLUGIN_DIR="$CONFIG_DIR/plugins"
