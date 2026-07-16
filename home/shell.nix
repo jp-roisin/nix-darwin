@@ -3,14 +3,10 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true; # home-manager sources this last, as required
 
-    # Declarative plugin management
     plugins = [
-      {
-        name = "zsh-autosuggestions";
-        src = pkgs.zsh-autosuggestions;
-        file = "share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh";
-      }
       {
         name = "alias-tips";
         src = pkgs.fetchFromGitHub {
@@ -20,12 +16,6 @@
           sha256 = "sha256-ZFWrwcwwwSYP5d8k7Lr/hL3WKAZmgn51Q9hYL3bq9vE=";
         };
         file = "alias-tips.plugin.zsh";
-      }
-      {
-        # IMPORTANT: Must be loaded last
-        name = "zsh-syntax-highlighting";
-        src = pkgs.zsh-syntax-highlighting;
-        file = "share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
       }
     ];
 
@@ -50,7 +40,6 @@
         "docker-compose"
         "docker"
       ];
-      # theme = "gozilla";
       theme = "agnoster";
     };
   };
@@ -63,8 +52,5 @@
     vim = "nvim";
     python = "python3";
     pip = "pip3";
-
-    # urldecode = "python3 -c 'import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))'";
-    # urlencode = "python3 -c 'import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))'";
   };
 }

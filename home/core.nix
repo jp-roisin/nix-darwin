@@ -1,9 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    tmux
-    zellij
-
     # archives
     zip
     xz
@@ -21,29 +18,27 @@
     nmap # A utility for network discovery and security auditing
 
     # misc
-    which
     tree
     fastfetch
     bat
 
-    # Explore
-    file
-    gnused
-    gnutar
-    gawk
-    zstd
-    caddy
-    gnupg
-
     # productivity
     glow # markdown previewer in terminal
 
-
+    # rust toolchain
+    rustc
+    cargo
+    clippy
+    rustfmt
+    rust-analyzer
   ];
 
   programs = {
     alacritty = {
       enable = true;
+      # The app itself comes from the homebrew cask; home-manager only writes
+      # the config so alacritty isn't installed twice.
+      package = null;
       settings = {
         # Theme automatically switches based on macOS appearance
         # Managed by scripts/alacritty_theme_switcher.sh
@@ -178,13 +173,6 @@
           sort_dir_first = true;
         };
       };
-    };
-
-    # skim provides a single executable: sk.
-    # Basically anywhere you would want to use grep, try sk instead.
-    skim = {
-      enable = true;
-      enableBashIntegration = true;
     };
   };
 }

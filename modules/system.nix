@@ -30,8 +30,7 @@
       for svc in \
         borders \
         sketchybar \
-        sketchybar-menubar-watch \
-        alacritty-theme-monitor; do
+        sketchybar-menubar-watch; do
         target="gui/$uid/org.nixos.$svc"
         for _ in 1 2 3 4 5; do
           /bin/launchctl kickstart -k "$target" 2>/dev/null || true
@@ -49,8 +48,6 @@
 
     defaults = {
       menuExtraClock.Show24Hour = true; # show 24 hour clock
-
-      # universalaccess.reduceMotion = true; # workspace animation - disabled due to permission issues
 
       hitoolbox.AppleFnUsageType = null;
 
@@ -231,17 +228,21 @@
       };
     };
 
-    # Alacritty theme auto-switcher - monitors macOS appearance changes
-    alacritty-theme-monitor = {
+    # Theme sync — launchd runs this whenever the global prefs plist changes
+    # (appearance toggles rewrite it). The switchers are idempotent, so the
+    # extra runs from unrelated pref changes are no-ops. Runs once and exits;
+    # no polling daemon.
+    theme-sync = {
       serviceConfig = {
         ProgramArguments = [
           "/bin/bash"
-          "/etc/nix-darwin/scripts/alacritty_theme_monitor.sh"
+          "-c"
+          "/etc/nix-darwin/scripts/alacritty_theme_switcher.sh; /etc/nix-darwin/scripts/sketchybar_theme_switcher.sh"
         ];
+        WatchPaths = [ "/Users/${username}/Library/Preferences/.GlobalPreferences.plist" ];
         RunAtLoad = true;
-        KeepAlive = true;
-        StandardOutPath = "/tmp/alacritty-theme-monitor.log";
-        StandardErrorPath = "/tmp/alacritty-theme-monitor.err.log";
+        StandardOutPath = "/tmp/theme-sync.log";
+        StandardErrorPath = "/tmp/theme-sync.err.log";
       };
     };
 

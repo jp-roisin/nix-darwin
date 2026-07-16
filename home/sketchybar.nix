@@ -7,8 +7,8 @@
   #  - Right: wifi (icon) | battery (icon + %) | clock
   #
   #  Theme follows macOS appearance. Colors are re-evaluated on every
-  #  `sketchybar --reload`, which is triggered by the shared appearance
-  #  monitor (scripts/alacritty_theme_monitor.sh).
+  #  `sketchybar --reload`, which is triggered by the theme-sync launchd
+  #  agent (WatchPaths on the global prefs plist, see modules/system.nix).
   #
   #  NOTE: In nix '' '' strings, bash variables must be written as ''${VAR}
   #  to avoid nix interpolation.

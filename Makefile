@@ -8,13 +8,3 @@ build:
 	   --extra-experimental-features 'nix-command flakes'
 	yes | sudo ./result/sw/bin/darwin-rebuild switch --flake .#$(CURRENT_HOSTNAME)
 	./scripts/brew_no_quarantine.sh
-
-# Helper target to show current hostname
-show-hostname:
-	@echo "Current hostname: $(CURRENT_HOSTNAME)"
-
-# List all available machines
-list-machines:
-	@echo "Available machines:"
-	@echo "  - macbook"
-	@echo "  - macbook-pro-m5"

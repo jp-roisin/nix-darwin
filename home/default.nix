@@ -10,12 +10,30 @@
     ./core.nix
     ./git.nix
     ./borders.nix
-    ./aerospace.nix
-    ./herdr.nix
     ./sketchybar.nix
-    ./opencode.nix
-    ./rust.nix
   ];
+
+  home.file.".config/aerospace/aerospace.toml" = {
+    force = true; # overwrite existing file
+    source = ./aerospace.toml;
+  };
+
+  home.file.".config/herdr/config.toml" = {
+    force = true; # overwrite existing file
+    source = ./herdr.toml;
+  };
+
+  # opencode config. Managed declaratively so `make build` always resets it to
+  # this known-good version — opencode's own plugin/schema migrations otherwise
+  # rewrite the file in place (leaving the .bak / .tui-migration.bak droppings).
+  #
+  # NOTE: this becomes a read-only symlink into the nix store, so opencode can no
+  # longer migrate it on a schema bump. When opencode changes its schema, edit
+  # the JSON here and rebuild rather than letting opencode rewrite it.
+  home.file.".config/opencode/opencode.json" = {
+    force = true; # overwrite the existing hand-managed file
+    source = ./opencode.json;
+  };
 
   # Clone alacritty-theme repository if it doesn't exist (for new machines)
   home.activation.cloneAlacrittyThemes = lib.hm.dag.entryAfter ["writeBoundary"] ''
@@ -33,20 +51,9 @@
     $DRY_RUN_CMD /etc/nix-darwin/scripts/alacritty_theme_switcher.sh 2>/dev/null || true
   '';
 
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
   home = {
     username = username;
     homeDirectory = "/Users/${username}";
-
-    # This value determines the Home Manager release that your
-    # configuration is compatible with. This helps avoid breakage
-    # when a new Home Manager release introduces backwards
-    # incompatible changes.
-    #
-    # You can update Home Manager without changing this value. See
-    # the Home Manager release notes for a list of state version
-    # changes in each release.
     stateVersion = "24.05";
   };
 

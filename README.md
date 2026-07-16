@@ -22,7 +22,6 @@ This repository contains my personal `nix-darwin` setup for managing macOS syste
 │   └── tmux.conf            # Tmux configuration
 └── scripts/                  # Helper scripts
     ├── brew_no_quarantine.sh        # Remove quarantine from Chromium
-    ├── alacritty_theme_monitor.sh   # Monitor system appearance changes
     └── alacritty_theme_switcher.sh  # Switch Alacritty theme
 ```
 
