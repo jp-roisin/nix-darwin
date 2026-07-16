@@ -13,8 +13,8 @@
     ./aerospace.nix
     ./herdr.nix
     ./sketchybar.nix
+    ./opencode.nix
     ./rust.nix
-    # ./starship.nix
   ];
 
   # Clone alacritty-theme repository if it doesn't exist (for new machines)
