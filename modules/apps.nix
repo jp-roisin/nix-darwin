@@ -48,6 +48,7 @@
     gh
     stripe-cli
     python3
+    watchexec
   ];
 
   # The apps installed by homebrew are not managed by nix, and not reproducible!
