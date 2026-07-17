@@ -1,4 +1,4 @@
-{ pkgs, herdr, openspec, ... }:
+{ pkgs, herdr, openspec, pi, ... }:
 {
 
   ##########################################################################
@@ -23,6 +23,7 @@
     pam-reattach # Enable TouchID in tmux sessions
     herdr.packages.${pkgs.stdenv.hostPlatform.system}.default # terminal workspace manager
     openspec.packages.${pkgs.stdenv.hostPlatform.system}.default # spec-driven dev CLI
+    pi.packages.${pkgs.stdenv.hostPlatform.system}.default # pi coding agent
 
     # Migrated from homebrew
     autojump
