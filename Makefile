@@ -8,3 +8,7 @@ build:
 	   --extra-experimental-features 'nix-command flakes'
 	yes | sudo ./result/sw/bin/darwin-rebuild switch --flake .#$(CURRENT_HOSTNAME)
 	./scripts/brew_no_quarantine.sh
+
+upgrade:
+	@echo "Bumping nixpkgs-darwin (run 'make build' after to apply)"
+	nix flake lock --update-input nixpkgs-darwin
