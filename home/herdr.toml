@@ -9,7 +9,7 @@ light_name = "one-light"
 enabled = false
 
 [ui.toast]
-delivery = "herdr"
+delivery = "system"
 
 [keys]
 # Prefix key to enter prefix mode (default: "ctrl+b")
