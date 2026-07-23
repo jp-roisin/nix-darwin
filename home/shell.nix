@@ -27,6 +27,7 @@
       export PATH="/usr/local/texlive/2025/bin/universal-darwin:$PATH"
       export PATH="/Library/TeX/texbin:$PATH"
       export PATH="$HOME/bin:$PATH"
+      export PATH="/opt/homebrew/opt/python@3.12/libexec/bin:$PATH" # unversioned python3/pip3 -> 3.12 (keg-only)
     '';
 
     oh-my-zsh = {

@@ -48,7 +48,6 @@
     tty-share
     gh
     stripe-cli
-    python3
     watchexec
   ];
 
@@ -78,6 +77,13 @@
       "cliclick" # read cursor position (sketchybar menu-bar auto-hide); not in nixpkgs
       "modem-dev/tap/hunk" # custom tap, not in nixpkgs
       "nx" # not in nixpkgs
+
+      # ungoogled-chromium-macos build utils
+      "python@3.12"
+      "ninja"
+      "coreutils"
+      "readline"
+      "quilt"
     ];
 
     # `brew install --cask`
