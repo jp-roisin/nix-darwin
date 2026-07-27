@@ -4,6 +4,9 @@
   inputs = {
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    # Stable channel for third-party flakes that break on bleeding-edge unstable.
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
@@ -21,9 +24,11 @@
     };
 
     # openspec — AI-native spec-driven development CLI
+    # Pinned to stable nixpkgs: its flake hardcodes pnpm_9, which unstable now
+    # marks insecure (and can't be overridden — its flake uses legacyPackages).
     openspec = {
       url = "github:Fission-AI/OpenSpec";
-      inputs.nixpkgs.follows = "nixpkgs-darwin";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     # pi — coding agent (no official flake; community-maintained)
