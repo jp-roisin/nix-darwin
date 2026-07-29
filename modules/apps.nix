@@ -49,9 +49,6 @@
     gh
     stripe-cli
     watchexec
-    colima # Docker Desktop replacement (Linux VM runtime)
-    docker # docker CLI
-    docker-compose
   ];
 
   # The apps installed by homebrew are not managed by nix, and not reproducible!
@@ -108,6 +105,7 @@
       "anki"
       "mactex"
       "whatsapp"
+      "docker-desktop"
       "microsoft-teams"
       "inkscape"
       "visual-studio-code"

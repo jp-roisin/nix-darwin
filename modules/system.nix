@@ -215,18 +215,16 @@
       };
     };
 
-    colima = {
+    docker-desktop = {
       serviceConfig = {
         ProgramArguments = [
-          "${pkgs.colima}/bin/colima"
-          "start"
-          "--foreground"
+          "/usr/bin/open"
+          "-a"
+          "/Applications/Docker.app"
         ];
-        EnvironmentVariables.PATH = "${pkgs.docker}/bin:/usr/bin:/bin";
         RunAtLoad = true;
-        KeepAlive = true;
-        StandardOutPath = "/tmp/colima.log";
-        StandardErrorPath = "/tmp/colima.err.log";
+        StandardOutPath = "/tmp/docker-desktop.log";
+        StandardErrorPath = "/tmp/docker-desktop.err.log";
       };
     };
 
