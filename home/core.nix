@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  home.sessionVariables.EDITOR = "nvim";
+
   home.packages = with pkgs; [
     # archives
     zip
@@ -8,6 +10,7 @@
     p7zip
 
     # utils
+    neovim # editor; config lives in ~/.config/nvim (NvChad, not managed by home-manager)
     ripgrep # recursively searches directories for a regex pattern
     jq # A lightweight and flexible command-line JSON processor
     yq-go # yaml processer https://github.com/mikefarah/yq
@@ -154,13 +157,6 @@
       ];
 
       extraConfig = builtins.readFile ./tmux.conf;
-    };
-
-    # modern vim
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      vimAlias = true;
     };
 
     # terminal file manager
