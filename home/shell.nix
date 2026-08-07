@@ -48,6 +48,7 @@
   home.shellAliases = {
     k = "kubectl";
     lg = "lazygit";
+    ldk = "lazydocker";
     oc = "opencode";
     vi = "nvim";
     vim = "nvim";

@@ -19,6 +19,7 @@
   environment.systemPackages = with pkgs; [
     helix
     lazygit
+    lazydocker
     sqlite
     pam-reattach # Enable TouchID in tmux sessions
     herdr.packages.${pkgs.stdenv.hostPlatform.system}.default # terminal workspace manager
