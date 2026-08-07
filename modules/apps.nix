@@ -117,6 +117,7 @@
       "claude"
       "claude-code"
       "obsidian"
+      "onlyoffice"
 
       # Requiring: scripts/brew_no_quarantine.sh
       "chromium"
