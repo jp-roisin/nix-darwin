@@ -34,6 +34,7 @@
     clippy
     rustfmt
     rust-analyzer
+    diesel-cli
   ];
 
   programs = {
