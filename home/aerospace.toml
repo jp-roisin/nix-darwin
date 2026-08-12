@@ -112,3 +112,7 @@ outer.top = [
 [[on-window-detected]]
     if.app-id = "org.chromium.Chromium-fp"
     run = ["move-node-to-workspace 5", "exec-and-forget sleep 0.2 && aerospace workspace-back-and-forth"]
+
+[[on-window-detected]]
+    if.app-id = "org.chromium.Chromium-2026-08"
+    run = ["move-node-to-workspace 5", "exec-and-forget sleep 0.2 && aerospace workspace-back-and-forth"]
