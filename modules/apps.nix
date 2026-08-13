@@ -130,6 +130,7 @@
       Wireguard = 1451685025;
       Pages = 361309726;
       Numbers = 361304891;
+      Amphetamine = 937984704;
     };
   };
 }
