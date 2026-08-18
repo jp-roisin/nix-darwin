@@ -125,10 +125,13 @@
     ];
 
     # `mas install`
+    # Disabled: `mas list` returns nothing because /Applications isn't in the
+    # Spotlight index, so brew bundle reinstalls all three on every rebuild.
+    # Re-enable once `mas list` shows them (`sudo mdutil -E /System/Volumes/Data`).
     masApps = {
-      Xcode = 497799835;
-      Pages = 361309726;
-      Numbers = 361304891;
+      # Xcode = 497799835;
+      # Pages = 361309726;
+      # Numbers = 361304891;
     };
   };
 }
