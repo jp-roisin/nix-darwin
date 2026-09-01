@@ -35,6 +35,10 @@
     rustfmt
     rust-analyzer
     diesel-cli
+
+    # go toolchain
+    go
+    gopls
   ];
 
   programs = {
