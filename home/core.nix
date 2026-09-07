@@ -28,6 +28,9 @@
     # productivity
     glow # markdown previewer in terminal
 
+    # expo tooling
+    eas-cli
+
     # rust toolchain
     rustc
     cargo
