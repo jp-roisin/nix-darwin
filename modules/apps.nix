@@ -1,4 +1,4 @@
-{ pkgs, herdr, openspec, pi, ... }:
+{ pkgs, lib, config, herdr, openspec, pi, ... }:
 {
 
   ##########################################################################
@@ -131,4 +131,25 @@
       # Numbers = 361304891;
     };
   };
+
+  # A single flaky Homebrew package (app running during upgrade, transient
+  # download failure, upstream hiccup) shouldn't abort the whole rebuild.
+  # Same command as upstream nix-darwin, but warns instead of exiting.
+  system.activationScripts.homebrew.text = lib.mkForce ''
+    # Homebrew Bundle
+    echo >&2 "Homebrew bundle..."
+    if [ -f "${config.homebrew.prefix}/bin/brew" ]; then
+      ${config.homebrew.onActivation.brewBundleCmd { onlyCheck = false; }} || {
+        printf >&2 '\n\e[1;33m%s\e[0m\n' "######################################################################"
+        printf >&2 '\e[1;33m%s\e[0m\n'   "##                                                                  ##"
+        printf >&2 '\e[1;33m%s\e[0m\n'   "##   WARNING: brew bundle FAILED                                    ##"
+        printf >&2 '\e[1;33m%s\e[0m\n'   "##   Some Homebrew packages are NOT installed or upgraded.          ##"
+        printf >&2 '\e[1;33m%s\e[0m\n'   "##   Activation continued anyway - re-run 'make build' to retry.    ##"
+        printf >&2 '\e[1;33m%s\e[0m\n'   "##                                                                  ##"
+        printf >&2 '\e[1;33m%s\e[0m\n\n' "######################################################################"
+      }
+    else
+      echo -e "\e[1;31merror: Homebrew is not installed, skipping...\e[0m" >&2
+    fi
+  '';
 }
