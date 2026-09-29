@@ -1,5 +1,6 @@
 {
   username,
+  hostname,
   lib,
   pkgs,
   ...
@@ -15,7 +16,14 @@
 
   home.file.".config/aerospace/aerospace.toml" = {
     force = true; # overwrite existing file
-    source = ./aerospace.toml;
+    # Notchless built-in screens (macbook = M2 Pro) don't reserve the top
+    # strip, so they need the full sketchybar clearance like externals do.
+    text = let
+      notchRule = ''{ monitor."(Built-in|Retina|Liquid|Color LCD)" = 12 },'';
+    in
+      if hostname == "macbook"
+      then builtins.replaceStrings [notchRule] [''{ monitor."(Built-in|Retina|Liquid|Color LCD)" = 45 },''] (builtins.readFile ./aerospace.toml)
+      else builtins.readFile ./aerospace.toml;
   };
 
   home.file.".config/herdr/config.toml" = {
