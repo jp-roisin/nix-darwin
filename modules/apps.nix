@@ -113,7 +113,6 @@
       "redis-insight"
       "zed"
       # "protonvpn"
-      "claude-code"
       "obsidian"
       "onlyoffice"
 

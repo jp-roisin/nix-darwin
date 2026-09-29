@@ -28,6 +28,9 @@
     # productivity
     glow # markdown previewer in terminal
 
+    # coding agent (pinned by the flake lock; `make upgrade` bumps it)
+    claude-code
+
     # expo tooling
     eas-cli
 
