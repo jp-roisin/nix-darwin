@@ -43,6 +43,15 @@
     source = ./opencode.json;
   };
 
+  # Docker config: merge our keys in rather than symlinking, because Docker
+  # Desktop / `docker login` / `docker context use` rewrite this file.
+  home.activation.dockerConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    CFG="$HOME/.docker/config.json"
+    $DRY_RUN_CMD mkdir -p "$HOME/.docker"
+    [ -s "$CFG" ] || echo '{}' > "$CFG"
+    $DRY_RUN_CMD ${lib.getExe pkgs.jq} '.psFormat = "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"' "$CFG" > "$CFG.tmp" && $DRY_RUN_CMD mv "$CFG.tmp" "$CFG"
+  '';
+
   # Clone alacritty-theme repository if it doesn't exist (for new machines)
   home.activation.cloneAlacrittyThemes = lib.hm.dag.entryAfter ["writeBoundary"] ''
     REPO_DIR="$HOME/.config/alacritty/alacritty-theme"
