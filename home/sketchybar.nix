@@ -268,8 +268,8 @@
   # Plugin: Claude Max (5x) current 5-hour session usage %.
   #
   # No official API. Reads the OAuth access token Claude Code stores locally
-  # (~/.claude/.credentials.json, else the login keychain under service
-  # "Claude Code-credentials") and calls the undocumented usage endpoint.
+  # (the login keychain under service "Claude Code-credentials", else
+  # ~/.claude/.credentials.json) and calls the undocumented usage endpoint.
   # Response field .five_hour.utilization is the session % consumed.
   # Defensive: any missing token / curl failure / parse failure -> "--", exit 0.
   home.file.".config/sketchybar/plugins/claude_usage.sh" = {
@@ -290,13 +290,12 @@
         exit 0
       }
 
-      # Read the OAuth token: credentials file first, then login keychain.
-      creds=""
-      if [ -f "$HOME/.claude/.credentials.json" ]; then
+      # Read the OAuth token: login keychain first (where Claude Code on macOS
+      # keeps it refreshed), then the credentials file. The file can be a stale
+      # leftover holding an expired token, so it must not win.
+      creds=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null)
+      if [ -z "$creds" ] && [ -f "$HOME/.claude/.credentials.json" ]; then
         creds=$(cat "$HOME/.claude/.credentials.json" 2>/dev/null)
-      fi
-      if [ -z "$creds" ]; then
-        creds=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null)
       fi
 
       token=$(printf '%s' "$creds" | jq -r '.claudeAiOauth.accessToken // empty' 2>/dev/null)
