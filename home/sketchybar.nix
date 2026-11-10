@@ -307,7 +307,9 @@
         -H "anthropic-beta: oauth-2025-04-20" \
         -H "Content-Type: application/json" 2>/dev/null)
 
-      pct=$(printf '%s' "$resp" | jq -r '.five_hour.utilization // empty' 2>/dev/null)
+      # five_hour can be null (no active 5h window for the account); fall back
+      # to the weekly utilization so the bar still shows something real.
+      pct=$(printf '%s' "$resp" | jq -r '.five_hour.utilization // .seven_day.utilization // empty' 2>/dev/null)
       [ -z "$pct" ] && fail
 
       # Round to integer.
