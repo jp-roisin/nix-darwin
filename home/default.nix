@@ -31,13 +31,6 @@
     source = ./herdr.toml;
   };
 
-  # Claude hook reporting the session title to herdr's agent sidebar.
-  # Registered in ~/.claude/settings.json (not nix-managed: herdr/claude write to it).
-  home.file.".claude/hooks/claude-session-title.sh" = {
-    source = ./claude-session-title.sh;
-    executable = true;
-  };
-
   # opencode config. Managed declaratively so `make build` always resets it to
   # this known-good version — opencode's own plugin/schema migrations otherwise
   # rewrite the file in place (leaving the .bak / .tui-migration.bak droppings).

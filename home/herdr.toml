@@ -14,3 +14,11 @@ delivery = "system"
 [keys]
 # Prefix key to enter prefix mode (default: "ctrl+b")
 prefix = "ctrl+space"
+
+# Claude sets the terminal title to the session name (/rename shows instantly).
+# Row 2 reads `idle · <session name>` instead of `claude`.
+[ui.sidebar.agents.rows_by_agent]
+claude = [
+  ["state_icon", "machine", "workspace", "tab"],
+  ["state_text", "terminal_title_stripped"],
+]
