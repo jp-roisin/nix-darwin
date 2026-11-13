@@ -45,6 +45,11 @@
     # go toolchain
     go
     gopls
+
+    # gleam toolchain (erlang needed by lustre dev tools)
+    gleam
+    erlang
+    rebar3
   ];
 
   programs = {
