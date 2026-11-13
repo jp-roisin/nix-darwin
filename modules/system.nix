@@ -58,7 +58,7 @@
         tilesize = 128;
         autohide-delay = 0.0;
         expose-animation-duration = 0.0;
-        orientation = "right";
+        orientation = "bottom";
       };
 
       # customize finder
