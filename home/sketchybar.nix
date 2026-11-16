@@ -114,6 +114,16 @@
             script="$PLUGIN_DIR/aerospace.sh $sid"
       done
 
+      ##### Center: focused aerospace layout #####
+      # aerospace_layout_change is triggered by aerospace on focus change and
+      # by the layout keybindings (see aerospace.toml).
+      sketchybar --add event aerospace_layout_change \
+        --add item layout center \
+        --set layout \
+          icon.drawing=off \
+          script="$PLUGIN_DIR/layout.sh" \
+        --subscribe layout aerospace_layout_change aerospace_workspace_change front_app_switched
+
       ##### Right: wifi  battery  clock (added right-to-left) #####
       # No separators; extra left padding on each section provides the gap.
       sketchybar --add item clock right \
@@ -193,6 +203,34 @@
           icon.color="$FG_COLOR" \
           background.drawing=off
       fi
+    '';
+  };
+
+  # Plugin: layout of the focused window's container (or the workspace root
+  # when no window is focused).
+  home.file.".config/sketchybar/plugins/layout.sh" = {
+    force = true;
+    executable = true;
+    text = ''
+      #!/usr/bin/env bash
+      source "$HOME/.config/sketchybar/colors.sh"
+
+      if [[ "$(aerospace list-windows --focused --format '%{window-is-fullscreen}' 2>/dev/null)" == "true" ]]; then
+        layout=fullscreen
+      else
+        layout=$(aerospace list-windows --focused --format '%{window-layout}' 2>/dev/null)
+        [[ -z "$layout" ]] && layout=$(aerospace list-workspaces --focused --format '%{workspace-root-container-layout}' 2>/dev/null)
+      fi
+
+      case "$layout" in
+        h_tiles)     label="tiles ↔" ;;
+        v_tiles)     label="tiles ↕" ;;
+        h_accordion) label="accordion ↔" ;;
+        v_accordion) label="accordion ↕" ;;
+        *)           label="$layout" ;;
+      esac
+
+      sketchybar --set "$NAME" label="$label"
     '';
   };
 

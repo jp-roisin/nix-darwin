@@ -28,6 +28,9 @@ exec-on-workspace-change = [
   '/run/current-system/sw/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
 ]
 
+# Refresh the sketchybar layout indicator when window focus changes
+on-focus-changed = ['exec-and-forget /run/current-system/sw/bin/sketchybar --trigger aerospace_layout_change']
+
 # CUSTOM GAPS
 [gaps]
 inner.horizontal = 12
@@ -57,16 +60,16 @@ outer.top = [
 
     # Consider using 'join-with' command as a 'split' replacement if you want to enable
     # normalizations
-    alt-h = 'split horizontal'
-    alt-v = 'split vertical'
+    alt-h = ['split horizontal', 'exec-and-forget /run/current-system/sw/bin/sketchybar --trigger aerospace_layout_change']
+    alt-v = ['split vertical', 'exec-and-forget /run/current-system/sw/bin/sketchybar --trigger aerospace_layout_change']
 
-    alt-f = 'fullscreen'
+    alt-f = ['fullscreen', 'exec-and-forget /run/current-system/sw/bin/sketchybar --trigger aerospace_layout_change']
 
-    alt-s = 'layout v_accordion' # 'layout stacking' in i3
-    alt-w = 'layout h_accordion' # 'layout tabbed' in i3
-    alt-x = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
+    alt-s = ['layout v_accordion', 'exec-and-forget /run/current-system/sw/bin/sketchybar --trigger aerospace_layout_change'] # 'layout stacking' in i3
+    alt-w = ['layout h_accordion', 'exec-and-forget /run/current-system/sw/bin/sketchybar --trigger aerospace_layout_change'] # 'layout tabbed' in i3
+    alt-x = ['layout tiles horizontal vertical', 'exec-and-forget /run/current-system/sw/bin/sketchybar --trigger aerospace_layout_change'] # 'layout toggle split' in i3
 
-    alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
+    alt-shift-space = ['layout floating tiling', 'exec-and-forget /run/current-system/sw/bin/sketchybar --trigger aerospace_layout_change'] # 'floating toggle' in i3
 
     # Not supported, because this command is redundant in AeroSpace mental model.
     # See: https://nikitabobko.github.io/AeroSpace/guide#floating-windows
