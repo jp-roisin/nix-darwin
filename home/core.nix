@@ -54,9 +54,18 @@
     # swift tooling (compiler and sourcekit-lsp come from Xcode)
     swiftformat
     swiftlint
+
+    # kotlin toolchain (JDK via programs.java below)
+    kotlin
+    kotlin-language-server
+    ktlint
+    gradle
   ];
 
   programs = {
+    # Sets JAVA_HOME so gradle/kotlin use nix's JDK over the system Temurin 17
+    java.enable = true;
+
     alacritty = {
       enable = true;
       # The app itself comes from the homebrew cask; home-manager only writes
