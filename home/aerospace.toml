@@ -118,6 +118,10 @@ outer.top = [
     run = ["layout tiling"]
 
 [[on-window-detected]]
+    if.app-id = "com.apple.dt.Devices"
+    run = ["layout tiling"]
+
+[[on-window-detected]]
     if.app-id = "org.chromium.Chromium-143"
     run = ["move-node-to-workspace 5", "exec-and-forget sleep 0.2 && aerospace workspace-back-and-forth"]
 
