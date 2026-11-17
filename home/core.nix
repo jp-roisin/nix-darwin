@@ -50,6 +50,10 @@
     gleam
     erlang
     rebar3
+
+    # swift tooling (compiler and sourcekit-lsp come from Xcode)
+    swiftformat
+    swiftlint
   ];
 
   programs = {
