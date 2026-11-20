@@ -43,4 +43,9 @@ if [ "$CURRENT" != "$DESIRED" ]; then
     ln -sf "$DESIRED" "$ACTIVE_THEME_LINK"
     # Touch alacritty config to trigger a live reload in open windows.
     touch "$USER_HOME/.config/alacritty/alacritty.toml" 2>/dev/null || true
+    # herdr only re-reads the host terminal's colors on focus-in or SIGWINCH
+    # (Alacritty doesn't send color-scheme reports). Give Alacritty a moment
+    # to reload, then nudge herdr clients so auto_switch picks the new theme.
+    sleep 0.5
+    pkill -WINCH -x herdr 2>/dev/null || true
 fi
