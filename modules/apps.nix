@@ -108,6 +108,7 @@
       "redis-insight"
       "zed"
       "onlyoffice"
+      "genymotion"
 
       # "microsoft-teams"
       # "raspberry-pi-imager"
