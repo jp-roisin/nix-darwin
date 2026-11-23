@@ -34,7 +34,7 @@
       enable = true;
       plugins = [
         "git"
-        "autojump" # brew
+        "autojump" # nix, see environment.pathsToLink in modules/apps.nix
         "yarn"
         "brew"
         "docker-compose"

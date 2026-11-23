@@ -16,6 +16,9 @@
   # But on macOS, it's less stable than homebrew.
   #
   # Related Discussion: https://discourse.nixos.org/t/darwin-again/29331
+  # oh-my-zsh autojump plugin sources /run/current-system/sw/share/autojump/autojump.zsh
+  environment.pathsToLink = [ "/share/autojump" ];
+
   environment.systemPackages = with pkgs; [
     evil-helix # helix with vim keybindings
     lazygit
