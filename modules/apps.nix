@@ -21,7 +21,7 @@
     lazygit
     lazydocker
     sqlite
-    pam-reattach # Enable TouchID in tmux sessions
+    pam-reattach # Enable TouchID in herdr sessions
     herdr.packages.${pkgs.stdenv.hostPlatform.system}.default # terminal workspace manager
     openspec.packages.${pkgs.stdenv.hostPlatform.system}.default # spec-driven dev CLI
     pi.packages.${pkgs.stdenv.hostPlatform.system}.default # pi coding agent

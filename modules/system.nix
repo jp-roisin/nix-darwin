@@ -191,9 +191,9 @@
     };
   };
 
-  # Add ability to use TouchID for sudo authentication (including tmux sessions)
+  # Add ability to use TouchID for sudo authentication (including herdr sessions)
   # Note: Using environment.etc to create sudo_local instead of security.pam.services
-  # This approach provides TouchID support in both regular terminal and tmux sessions
+  # This approach provides TouchID support in both regular terminal and herdr sessions
   environment.etc."pam.d/sudo_local".text = ''
     # Managed by Nix Darwin
     auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so ignore_ssh

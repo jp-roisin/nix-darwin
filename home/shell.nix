@@ -37,7 +37,6 @@
         "autojump" # brew
         "yarn"
         "brew"
-        "tmux"
         "docker-compose"
         "docker"
       ];

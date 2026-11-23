@@ -18,8 +18,7 @@ This repository contains my personal `nix-darwin` setup for managing macOS syste
 │   ├── default.nix          # Home-manager entry point
 │   ├── core.nix             # Core packages and programs
 │   ├── git.nix              # Git configuration
-│   ├── shell.nix            # Zsh shell configuration
-│   └── tmux.conf            # Tmux configuration
+│   └── shell.nix            # Zsh shell configuration
 └── scripts/                  # Helper scripts
     ├── brew_no_quarantine.sh        # Remove quarantine from Chromium
     └── alacritty_theme_switcher.sh  # Switch Alacritty theme
@@ -141,10 +140,6 @@ _TODO: Document what's automatically configured after installation_
 - [ ] **Alacritty**
   - [ ] Install themes: `mkdir -p ~/.config/alacritty/themes && git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes`
   - [ ] Verify theme auto-switching works (change system appearance)
-
-- [ ] **Tmux**
-  - [ ] Install TPM (Tmux Plugin Manager): `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
-  - [ ] Install plugins: Open tmux, press `Ctrl-Space + I`
 
 - [ ] **Zsh**
   - [ ] Verify autojump works: `j <directory>` after visiting directories

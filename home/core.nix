@@ -171,23 +171,6 @@
       };
     };
 
-    tmux = {
-      enable = true;
-
-      # Set prefix to Ctrl-Space
-      shortcut = "C-Space";
-      keyMode = "emacs";
-      terminal = "$TERM";
-      shell = "/bin/zsh";
-
-      plugins = with pkgs.tmuxPlugins; [
-        resurrect
-        continuum
-      ];
-
-      extraConfig = builtins.readFile ./tmux.conf;
-    };
-
     # terminal file manager
     yazi = {
       enable = true;
