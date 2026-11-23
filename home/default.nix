@@ -31,6 +31,11 @@
     source = ./herdr.toml;
   };
 
+  home.file.".config/helix/config.toml" = {
+    force = true; # overwrite existing file
+    source = ./helix.toml;
+  };
+
   # opencode config. Managed declaratively so `make build` always resets it to
   # this known-good version — opencode's own plugin/schema migrations otherwise
   # rewrite the file in place (leaving the .bak / .tui-migration.bak droppings).

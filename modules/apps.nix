@@ -17,7 +17,7 @@
   #
   # Related Discussion: https://discourse.nixos.org/t/darwin-again/29331
   environment.systemPackages = with pkgs; [
-    helix
+    evil-helix # helix with vim keybindings
     lazygit
     lazydocker
     sqlite

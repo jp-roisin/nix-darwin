@@ -1,0 +1,17 @@
+theme = "ayu_mirage"
+
+[editor]
+evil = true
+line-number = "relative"
+cursorline = true
+true-color = true
+
+auto-format = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
