@@ -17,8 +17,10 @@ if [ ! -d "$THEME_DIR" ]; then
     exit 1
 fi
 
-# Get current macOS appearance (returns "Dark" or "Light")
-appearance=$(defaults read -g AppleInterfaceStyle 2>/dev/null || echo "Light")
+# Get current macOS appearance (returns "Dark" or "Light"). Absolute path:
+# home-manager activation runs with a nix-only PATH (no /usr/bin), where a
+# bare `defaults` fails and we'd silently fall back to Light.
+appearance=$(/usr/bin/defaults read -g AppleInterfaceStyle 2>/dev/null || echo "Light")
 
 # Select theme based on appearance
 if [[ "$appearance" == "Dark" ]]; then
