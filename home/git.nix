@@ -23,7 +23,7 @@
       };
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
-      core.editor = "nvim";
+      core.editor = "hx";
       merge.conflictstyle = "diff3";
       rerere.autoupdate = true;
     };
