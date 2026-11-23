@@ -48,7 +48,7 @@
 
     # gleam toolchain (erlang needed by lustre dev tools)
     gleam
-    erlang
+    beamPackages.erlang
     rebar3
 
     # swift tooling (compiler and sourcekit-lsp come from Xcode)
@@ -191,6 +191,7 @@
     # terminal file manager
     yazi = {
       enable = true;
+      shellWrapperName = "yy";
       enableZshIntegration = true;
       settings = {
         manager = {
