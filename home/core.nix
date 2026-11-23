@@ -75,6 +75,12 @@
         # Theme automatically switches based on macOS appearance
         # Managed by scripts/alacritty_theme_switcher.sh
         general.import = [ "~/.config/alacritty/alacritty-theme/themes/active-theme.toml" ];
+        # nushell as the terminal's shell. Launched via a login zsh (no .zshrc, ~5ms) so it
+        # inherits the nix-darwin/home-manager environment; $SHELL stays zsh for other tools.
+        terminal.shell = {
+          program = "/bin/zsh";
+          args = [ "-l" "-c" "exec nu" ];
+        };
         window = {
           dimensions = {
             columns = 80;

@@ -1,5 +1,9 @@
 onboarding = false
 
+# panes would otherwise use $SHELL, which stays zsh (see alacritty terminal.shell)
+[terminal]
+default_shell = "nu"
+
 [theme]
 auto_switch = true
 dark_name = "one-dark"

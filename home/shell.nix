@@ -47,6 +47,24 @@
   # trying out nushell: run `nu` from zsh (inherits PATH/env), zsh stays the login shell
   programs.nushell = {
     enable = true;
+    # mirrors the PATH/mise/homebrew setup that zsh does in initContent and oh-my-zsh's brew plugin
+    extraEnv = ''
+      $env.PATH = ($env.PATH | split row (char esep)
+        | prepend [
+          /opt/homebrew/opt/python@3.12/libexec/bin
+          ($env.HOME | path join bin)
+          /Library/TeX/texbin
+          /usr/local/texlive/2025/bin/universal-darwin
+          ($env.HOME | path join .cargo/bin)
+          /opt/homebrew/bin
+          /opt/homebrew/sbin
+        ]
+        | append [ ($env.HOME | path join .local/bin) ($env.HOME | path join go/bin) ]
+        | uniq)
+      let autoload = ($nu.data-dir | path join vendor/autoload)
+      mkdir $autoload
+      ^mise activate nu | save -f ($autoload | path join mise.nu)
+    '';
     # oh-my-zsh plugin aliases: git/docker from nu_scripts, the rest ported by hand
     extraConfig = ''
       use ${pkgs.nu_scripts}/share/nu_scripts/aliases/git/git-aliases.nu *
