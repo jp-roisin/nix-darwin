@@ -45,7 +45,15 @@
   };
 
   # trying out nushell: run `nu` from zsh (inherits PATH/env), zsh stays the login shell
-  programs.nushell.enable = true;
+  programs.nushell = {
+    enable = true;
+    # oh-my-zsh plugin aliases: git/docker from nu_scripts, the rest ported by hand
+    extraConfig = ''
+      use ${pkgs.nu_scripts}/share/nu_scripts/aliases/git/git-aliases.nu *
+      use ${pkgs.nu_scripts}/share/nu_scripts/aliases/docker/docker-aliases.nu *
+      ${builtins.readFile ./aliases.nu}
+    '';
+  };
 
   # agnoster-style prompt for nu: current folder / git branch
   programs.oh-my-posh = {
