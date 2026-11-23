@@ -121,5 +121,6 @@
     vim = "nvim";
     python = "python3";
     pip = "pip3";
+    xx = "exit";
   };
 }
