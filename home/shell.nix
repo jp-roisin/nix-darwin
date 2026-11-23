@@ -73,6 +73,12 @@
     '';
   };
 
+  # tab completions for external commands (git, docker, brew, ...) in nu
+  programs.carapace = {
+    enable = true;
+    enableZshIntegration = false; # zsh keeps oh-my-zsh completions
+  };
+
   # agnoster-style prompt for nu: current folder / git branch
   programs.oh-my-posh = {
     enable = true;
