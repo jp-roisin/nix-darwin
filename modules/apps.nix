@@ -89,6 +89,7 @@
       "coreutils"
       "readline"
       "quilt"
+      "exercism" # cli tool to learn gleam
     ];
 
     # `brew install --cask`
