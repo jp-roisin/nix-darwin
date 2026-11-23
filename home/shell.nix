@@ -44,6 +44,42 @@
     };
   };
 
+  # trying out nushell: run `nu` from zsh (inherits PATH/env), zsh stays the login shell
+  programs.nushell.enable = true;
+
+  # agnoster-style prompt for nu: current folder / git branch
+  programs.oh-my-posh = {
+    enable = true;
+    enableZshIntegration = false; # zsh keeps oh-my-zsh's agnoster
+    settings = let
+      # nix strings have no \u escapes, decode nerd font glyphs via JSON
+      glyph = code: builtins.fromJSON ''"\u${code}"'';
+      segment = attrs: {
+        style = "powerline";
+        powerline_symbol = glyph "e0b0"; # arrow
+        foreground = "#100e23";
+      } // attrs;
+    in {
+      version = 4;
+      final_space = true;
+      blocks = [{
+        type = "prompt";
+        alignment = "left";
+        segments = [
+          (segment { type = "path"; background = "blue"; template = " {{ .Path }} "; options.style = "folder"; })
+          (segment {
+            type = "git";
+            background = "green";
+            # terminal ANSI colors (same as zsh agnoster): green, yellow when there are uncommitted changes
+            background_templates = [ "{{ if or .Working.Changed .Staging.Changed }}yellow{{ end }}" ];
+            template = " {{ .HEAD }} ";
+            options.fetch_status = true;
+          })
+        ];
+      }];
+    };
+  };
+
   home.shellAliases = {
     k = "kubectl";
     lg = "lazygit";
