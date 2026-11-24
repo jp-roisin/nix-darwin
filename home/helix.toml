@@ -1,4 +1,4 @@
-theme = "ayu_mirage"
+theme = "macos" # ayu_light/ayu_mirage, see scripts/helix_theme_switcher.sh
 
 [editor]
 evil = true

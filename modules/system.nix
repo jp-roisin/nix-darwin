@@ -237,7 +237,7 @@
         ProgramArguments = [
           "/bin/bash"
           "-c"
-          "/etc/nix-darwin/scripts/alacritty_theme_switcher.sh; /etc/nix-darwin/scripts/sketchybar_theme_switcher.sh"
+          "/etc/nix-darwin/scripts/alacritty_theme_switcher.sh; /etc/nix-darwin/scripts/sketchybar_theme_switcher.sh; /etc/nix-darwin/scripts/helix_theme_switcher.sh"
         ];
         WatchPaths = [ "/Users/${username}/Library/Preferences/.GlobalPreferences.plist" ];
         RunAtLoad = true;
