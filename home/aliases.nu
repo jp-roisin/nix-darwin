@@ -150,6 +150,8 @@ alias md = mkdir
 alias rd = ^rmdir
 
 # --- autojump: `j foo` jumps using the same db zsh fills, and nu now feeds it too ---
+# the autojump binary refuses to run unless its shell hook exported this (zsh's autojump.zsh does)
+$env.AUTOJUMP_SOURCED = 1
 def --env j [...args: string] { cd (^autojump ...$args | str trim) }
 $env.config.hooks.env_change.PWD = ($env.config.hooks.env_change.PWD? | default [] | append {|_, dir| ^autojump --add $dir })
 
