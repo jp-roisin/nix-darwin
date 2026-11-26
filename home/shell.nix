@@ -67,6 +67,11 @@
     '';
     # oh-my-zsh plugin aliases: git/docker from nu_scripts, the rest ported by hand
     extraConfig = ''
+      # nu highlights natively; make it flag unknown commands like zsh-syntax-highlighting (green found, red not)
+      $env.config.highlight_resolved_externals = true
+      $env.config.color_config.shape_external = "red"
+      $env.config.color_config.shape_external_resolved = "green"
+      $env.config.color_config.shape_internalcall = "green_bold"
       use ${pkgs.nu_scripts}/share/nu_scripts/aliases/git/git-aliases.nu *
       use ${pkgs.nu_scripts}/share/nu_scripts/aliases/docker/docker-aliases.nu *
       ${builtins.readFile ./aliases.nu}
