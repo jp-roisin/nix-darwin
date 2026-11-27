@@ -26,6 +26,19 @@
       else builtins.readFile ./aerospace.toml;
   };
 
+  # Sends new windows of custom Chromium builds to workspace 5 (see
+  # on-window-detected in aerospace.toml). The newest window id is the
+  # window that triggered the rule.
+  home.file.".config/aerospace/chromium-builds.sh" = {
+    force = true;
+    executable = true;
+    text = ''
+      #!/bin/sh
+      set -- $(aerospace list-windows --all --format '%{window-id} %{app-bundle-id}' | sort -n | tail -1)
+      case "$2" in org.chromium.Chromium-*) aerospace move-node-to-workspace --window-id "$1" 5 ;; esac
+    '';
+  };
+
   home.file.".config/herdr/config.toml" = {
     force = true; # overwrite existing file
     source = ./herdr.toml;

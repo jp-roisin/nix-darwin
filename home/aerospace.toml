@@ -117,14 +117,9 @@ outer.top = [
     if.app-id = "com.apple.iphonesimulator"
     run = ["layout tiling"]
 
+# Custom Chromium builds (~/Desktop/Chromium-NNN.app) each get their own
+# bundle id (org.chromium.Chromium-NNN) and if.app-id has no regex, so the
+# script matches them. All builds report the app name "Chromium".
 [[on-window-detected]]
-    if.app-id = "org.chromium.Chromium-143"
-    run = ["move-node-to-workspace 5", "exec-and-forget sleep 0.2 && aerospace workspace-back-and-forth"]
-
-[[on-window-detected]]
-    if.app-id = "org.chromium.Chromium-150"
-    run = ["move-node-to-workspace 5", "exec-and-forget sleep 0.2 && aerospace workspace-back-and-forth"]
-
-[[on-window-detected]]
-    if.app-id = "org.chromium.Chromium-151"
-    run = ["move-node-to-workspace 5", "exec-and-forget sleep 0.2 && aerospace workspace-back-and-forth"]
+    if.app-name-regex-substring = '^Chromium$'
+    run = ['exec-and-forget ~/.config/aerospace/chromium-builds.sh']
