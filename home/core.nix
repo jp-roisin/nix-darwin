@@ -60,6 +60,10 @@
     kotlin-language-server
     ktlint
     gradle
+
+    # moon monorepo tooling (moon delegates toolchain installs to proto, into ~/.proto)
+    moon
+    proto
   ];
 
   programs = {
